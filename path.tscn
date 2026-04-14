@@ -4,7 +4,8 @@
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_jnavc"]
 
-[node name="path" type="Node3D" unique_id=1319918802]
+[node name="path" type="Path3D" unique_id=95894422]
+debug_custom_color = Color(0, 0.87695616, 0.9370457, 1)
 script = ExtResource("1_jnavc")
 
 [node name="debug_display" type="MeshInstance3D" parent="." unique_id=1192998305]

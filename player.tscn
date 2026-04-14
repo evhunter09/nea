@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://d1e6301qt30f3"]
 
-[ext_resource type="Texture2D" uid="uid://biu66054cbho" path="res://1892118971-Alvin-Alvin-And-The-Chipmunks-Movie-900x1600.jpg" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://bs0nepjlsan1m" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bqepe4lsds15o" path="res://assets/characters/ttt.png" id="2_i3pqv"]
 
@@ -8,7 +7,6 @@
 albedo_texture = ExtResource("2_i3pqv")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3pqv"]
-albedo_texture = ExtResource("1_4flbx")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
 material = SubResource("StandardMaterial3D_i3pqv")
