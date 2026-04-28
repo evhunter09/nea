@@ -4,11 +4,11 @@ extends Node
 @export var world_state:WorldState = WorldState.COMBAT
 @export var level = null
 @export var difficulty:Difficulty
-@export var game_modifiers = {}
 @export var game_save: int = -1
 @export var game_stats = {}
 @export var current_screen:Screen
 @export var players = []
+var curr_enemies: int = 0
 
 enum State {MENU, LOADING, IN_GAME, PAUSED, EXITING}
 enum WorldState {COMBAT, MOVING}
@@ -22,8 +22,19 @@ enum Screen {NONE, MAIN}
 - sprint feedback (camera)
 - rotate body + movement + camera
 - slide
+''' 
 
-BUGS TO RECORD LATER
+''' BUGS 
+- path nodes in (just before) wierd corner joint (not modify next nodes IN para)
+- pathNode indicator mesh not update - not unique?
+
+RECORD LATER
 - uncrouch under roof - inside it (not get stuck good at least)
 - sprint while crouch without key down (toggle) - block
 '''
+
+''' TASKS
+1) WEAPON SYSTEM
+2) EXAMPLE WEAPON (pistol)
+3) AREA SYSTEM (is in combat)
+4) EXAMPLE MAP WITH PATH'''

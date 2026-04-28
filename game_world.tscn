@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://rvwsrcacbgax"]
 
-[ext_resource type="PackedScene" uid="uid://ddfbdo2gelwd6" path="res://map.tscn" id="1_bvgre"]
+[ext_resource type="PackedScene" uid="uid://ddfbdo2gelwd6" path="res://maps/map.tscn" id="1_bvgre"]
 [ext_resource type="PackedScene" uid="uid://d1e6301qt30f3" path="res://player.tscn" id="2_ea1x0"]
 
-[node name="Node3D" type="Node3D" unique_id=990318036]
+[node name="Game" type="Node3D" unique_id=990318036]
 
 [node name="world" parent="." unique_id=1407084146 instance=ExtResource("1_bvgre")]
 

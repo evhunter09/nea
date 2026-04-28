@@ -21,6 +21,11 @@ DebugMenu="*uid://cggqb75a8w8r"
 Tilde="*uid://q7w8q1prg67e"
 Globals="*uid://du3quwoos8wn3"
 
+[debug]
+
+shapes/paths/geometry_color=Color(0.101960786, 1, 0.69803923, 0.7529412)
+shapes/paths/geometry_width=3.0
+
 [display]
 
 window/vsync/vsync_mode=2

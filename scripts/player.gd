@@ -41,20 +41,24 @@ func duck():
 		collision.shape.height = DEFAULT_HEIGHT * CROUCH_HEIGHT_MULTI
 
 func run():
-	print(movement)
-	print("before: ", move_speed)
+	#print(movement)
+	#print("before: ", move_speed)
 	if Globals.world_state == ws.MOVING:
 		movement = Movement.WALK
 		move_speed = DEFAULT_MOVE_SPEED
 	else:
 		movement = Movement.RUN
 		move_speed = DEFAULT_MOVE_SPEED * SPRINT_MULTI
-	print("after ", move_speed)
+	#print("after ", move_speed)
+
+func reset_movement():
+	movement = Movement.WALK
+	move_speed = DEFAULT_MOVE_SPEED
 
 
 func _ready() -> void:
-	movement = Movement.WALK
-	move_speed = DEFAULT_MOVE_SPEED
+	reset_movement()
+	print("this is game")
 
 func _physics_process(_delta):
 	if not is_on_floor():  # falling
@@ -66,10 +70,8 @@ func _physics_process(_delta):
 	elif Input.is_action_pressed("player1_sprint"):
 		run()
 	else:
-		# resets to default speed ONLY if was sprinting
-		if movement == Movement.RUN:
-			movement = Movement.WALK
-			move_speed = DEFAULT_MOVE_SPEED
+		if movement == Movement.RUN: # resets to default speed ONLY if was sprinting
+			reset_movement()
 
 	var in_dir := Input.get_vector("player1_move_left", "player1_move_right",
 								   "player1_move_for", "player1_move_back")
@@ -84,6 +86,7 @@ func _physics_process(_delta):
 	
 	var turn_dir = Input.get_vector("LEFT", "RIGHT", "UP", "DOWN")
 	rotate_y(-turn_dir[0] * SENSITIVITY)
+	#rotate_x(turn_dir[1] * SENSITIVITY) # FUN
 	camera_pivot.rotate_x(turn_dir[1] * SENSITIVITY)
 	camera_pivot.rotation.x = clamp(camera_pivot.rotation.x, -0.5*PI, 0.5*PI) # between straight down and up
 
