@@ -30,10 +30,6 @@ func calc_curve_properties(i, nodes):
 		n.cum_distance = _distance
 
 
-
-
-
-
 func create_path(nodes: Array):
 	curve.clear_points() # ensures it is reset between levels, or editing
 	for i in nodes.size():
@@ -69,16 +65,19 @@ func _ready():
 
 func _get_current_node(progress: float):
 	for i in node_list.size():
-		if node_list[i].cum_distance >= progress:
-			return node_list[i]
-	return 0
+		node_list[i].highlighted = false
+		if progress < node_list[i].cum_distance:
+			node_list[i-1].highlighted = true
+			return node_list[i - 1] # if behind first node will return last (should never be)
+	return node_list[-1] # last
 
 
+func get_pos_on_path(progress: float): # not needed now, might need to snap to points because of inaccuracy
+	return curve.sample_baked_with_rotation(progress, true)
+	
 func get_direction(progress: float):
-	var corresponding_pos = curve.sample_baked_with_rotation(progress, true)
-	var dir = corresponding_pos.basis.get_euler()
-	return dir
-
+	var pos = get_pos_on_path(progress)
+	return pos.basis.get_euler()
 
 func get_progress_change(progress: float, offset: float) -> float:
 	# returns proportion of default change, to multiply by a constant multiplier

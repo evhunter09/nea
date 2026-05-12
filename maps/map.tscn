@@ -5,10 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://b0hdc7jmncqjq" path="res://maps/path_node.tscn" id="3_e0an3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e6lj2"]
-size = Vector3(12, 2.5, 12)
+size = Vector3(18, 2.5, 12)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c7s6e"]
-size = Vector3(12, 2.5, 12)
+size = Vector3(18, 2.5, 12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7s6e"]
 size = Vector3(2, 0.5, 2)
@@ -94,6 +94,7 @@ adjustment_brightness = 0.9
 [node name="layout" type="Node" parent="." unique_id=200949180]
 
 [node name="spawn" type="StaticBody3D" parent="layout" unique_id=2055107781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="layout/spawn" unique_id=1432942710]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
@@ -104,7 +105,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 mesh = SubResource("BoxMesh_c7s6e")
 
 [node name="overhang1" type="StaticBody3D" parent="layout" unique_id=413990661]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 2, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="layout/overhang1" unique_id=1911750684]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -115,7 +116,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("BoxMesh_wijl4")
 
 [node name="overhang2" type="StaticBody3D" parent="layout" unique_id=750638713]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.875, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 1.875, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="layout/overhang2" unique_id=1864083886]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -126,7 +127,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("BoxMesh_71pa8")
 
 [node name="overhang3" type="StaticBody3D" parent="layout" unique_id=1088661986]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 1.75, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.75, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="layout/overhang3" unique_id=1795521461]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -137,7 +138,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("BoxMesh_p5pve")
 
 [node name="overhang4" type="StaticBody3D" parent="layout" unique_id=1230838905]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, 1.625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 1.625, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="layout/overhang4" unique_id=501786015]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -178,15 +179,6 @@ shape = SubResource("BoxShape3D_e0an3")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="layout/stair/step2" unique_id=354438214]
 mesh = SubResource("BoxMesh_e0an3")
 
-[node name="step3" type="StaticBody3D" parent="layout/stair" unique_id=1517003394]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 7.642742e-15, 8.742278e-08, 7.642742e-15, -1, 7.75, 1.6, 3)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="layout/stair/step3" unique_id=753794828]
-shape = SubResource("BoxShape3D_e0an3")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="layout/stair/step3" unique_id=439632694]
-mesh = SubResource("BoxMesh_e0an3")
-
 [node name="step4" type="StaticBody3D" parent="layout/stair" unique_id=1038100751]
 transform = Transform3D(-1, -8.742278e-08, 0, 8.742278e-08, -1, -7.642742e-15, 0, -7.642742e-15, 1, 7.25, 1.8, 3)
 
@@ -196,14 +188,14 @@ shape = SubResource("BoxShape3D_e0an3")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="layout/stair/step4" unique_id=1576690705]
 mesh = SubResource("BoxMesh_e0an3")
 
-[node name="step7" type="StaticBody3D" parent="layout/stair" unique_id=18874076]
-transform = Transform3D(-1, -8.742278e-08, -6.6814974e-22, 8.742278e-08, -1, -1.5285484e-14, 0, -1.5285484e-14, 1, 9.25, 0.85, 3)
+[node name="step3" type="StaticBody3D" parent="layout/stair" unique_id=1517003394]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 7.642742e-15, 8.742278e-08, 7.642742e-15, -1, 7.75, 1.6, 3)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="layout/stair/step7" unique_id=172047208]
-shape = SubResource("BoxShape3D_05x41")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="layout/stair/step3" unique_id=753794828]
+shape = SubResource("BoxShape3D_e0an3")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="layout/stair/step7" unique_id=107806661]
-mesh = SubResource("BoxMesh_gqbix")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="layout/stair/step3" unique_id=439632694]
+mesh = SubResource("BoxMesh_e0an3")
 
 [node name="step5" type="StaticBody3D" parent="layout/stair" unique_id=1857991553]
 transform = Transform3D(1, -8.742278e-08, 8.742278e-08, -8.742278e-08, -1, -7.642742e-15, 8.742278e-08, 0, -1, 8.25, 1.4, 3)
@@ -221,6 +213,15 @@ transform = Transform3D(1, 1.7484555e-07, 6.6814974e-22, -1.7484555e-07, 1, 0, -
 shape = SubResource("BoxShape3D_05x41")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="layout/stair/step6" unique_id=1306536193]
+mesh = SubResource("BoxMesh_gqbix")
+
+[node name="step7" type="StaticBody3D" parent="layout/stair" unique_id=18874076]
+transform = Transform3D(-1, -8.742278e-08, -6.6814974e-22, 8.742278e-08, -1, -1.5285484e-14, 0, -1.5285484e-14, 1, 9.25, 0.85, 3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="layout/stair/step7" unique_id=172047208]
+shape = SubResource("BoxShape3D_05x41")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="layout/stair/step7" unique_id=107806661]
 mesh = SubResource("BoxMesh_gqbix")
 
 [node name="step8" type="StaticBody3D" parent="layout/stair" unique_id=313110894]
@@ -262,12 +263,12 @@ mesh = SubResource("PlaneMesh_e0an3")
 
 [node name="path" parent="." unique_id=95894422 instance=ExtResource("2_e0an3")]
 debug_custom_color = Color(1.1070073e-06, 0.4998786, 0.53484625, 1)
-node_list = Array[Node]([Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -3.25),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":0.0)
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3.25),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":2.0)
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -1.25),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":5.141592741012573)
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 0.75),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":7.141592741012573)
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, 2.75),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":0.2,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":10.283185482025146)
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, 2.75),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":0.5,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":12.283185482025146)
+node_list = Array[Node]([Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -3.25),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":0.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3.25),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":2.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -1.25),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":5.141592741012573,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 0.75),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":7.141592741012573,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, 2.75),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":0.2,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":10.283185482025146,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, 2.75),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":0.5,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":12.283185482025146,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
 ])
 
 [node name="PathNode" parent="path" unique_id=1780113298 instance=ExtResource("3_e0an3")]

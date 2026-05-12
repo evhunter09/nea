@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://rvwsrcacbgax"]
 
 [ext_resource type="PackedScene" uid="uid://ddfbdo2gelwd6" path="res://maps/map.tscn" id="1_bvgre"]
+[ext_resource type="Script" uid="uid://o548k6mtefj8" path="res://scripts/game.gd" id="1_ea1x0"]
 [ext_resource type="PackedScene" uid="uid://d1e6301qt30f3" path="res://player.tscn" id="2_ea1x0"]
+[ext_resource type="Script" uid="uid://bmilkxa7wnhbh" path="res://scripts/debug.gd" id="4_e08lw"]
 
 [node name="Game" type="Node3D" unique_id=990318036]
+script = ExtResource("1_ea1x0")
 
 [node name="world" parent="." unique_id=1407084146 instance=ExtResource("1_bvgre")]
 
@@ -11,3 +14,14 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 2)
 
 [node name="tilde-test" type="Node" parent="." unique_id=400218307]
+
+[node name="BoxContainer" type="BoxContainer" parent="." unique_id=1142845724]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="BoxContainer" unique_id=709303929]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Player vars:
+"
+script = ExtResource("4_e08lw")

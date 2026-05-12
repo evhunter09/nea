@@ -7,7 +7,18 @@ class_name PathNode extends Marker3D
 @export_range(-180, 180, 0.01, "radians_as_degrees") var curve_angle := 0.0
 @export var cum_distance := 0.0
 
+@export var highlighted = false
+var def_colour : Color
+
 func _ready():
 	$debug.mesh.height = max(curve_rad, 0.25) # sets height to minimum 0.25m
 	$debug.mesh.top_radius = distance
 	$debug.mesh.bottom_radius = distance
+	def_colour = $debug.mesh.material.albedo_color
+
+
+func _process(_delta):
+	if highlighted:
+		$debug.mesh.material.albedo_color = Color(0, 1.0, 0.13, 0.50)
+	else:
+		$debug.mesh.material.albedo_color = def_colour
