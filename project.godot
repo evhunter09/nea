@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="project"
+config/version="0.1.1"
 run/main_scene="uid://rvwsrcacbgax"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
