@@ -18,7 +18,6 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 DebugMenu="*uid://cggqb75a8w8r"
-Tilde="*uid://q7w8q1prg67e"
 Globals="*uid://du3quwoos8wn3"
 
 [debug]
@@ -37,7 +36,7 @@ version_control/autoload_on_startup=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/tilde/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")
 
 [input]
 
