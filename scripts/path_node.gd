@@ -11,7 +11,8 @@ class_name PathNode extends Marker3D
 var def_colour : Color
 
 func _ready():
-	$debug.mesh.height = max(curve_rad, 0.25) # sets height to minimum 0.25m
+	$debug.mesh.height = max(curve_rad / 2, 0.2) # keeps height reasonable (and minimum 0.2m)
+	$debug.position.y = $debug.mesh.height / 2 # keeps bottom of mesh at origin - can snap to floor
 	$debug.mesh.top_radius = distance
 	$debug.mesh.bottom_radius = distance
 	def_colour = $debug.mesh.material.albedo_color

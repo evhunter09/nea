@@ -3,11 +3,7 @@
 [ext_resource type="Script" uid="uid://bk0570hx8bjtm" path="res://scripts/path.gd" id="1_6aw2u"]
 
 [sub_resource type="Curve3D" id="Curve3D_jnavc"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 2.207791, 3, -3.2500002, 0, 0, 0, -1.1045696, 0, 0, 0.21000004, 3, -3.2500002, 0, 0, -1.1045696, 0, 0, 0, -1.79, 3, -1.25, 0, 0, 0, 0, 0, 1.1045696, -1.79, 3, 0.75, 1.1045696, 0, 0, 0, 0, 0, -3.79, 3, 2.75, 0, 0, 0, 0, 0, 0, -5.79, 3, 2.75),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0)
-}
-point_count = 6
+resource_local_to_scene = true
 up_vector_enabled = false
 
 [node name="Path" type="Path3D" unique_id=95894422]

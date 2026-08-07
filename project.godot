@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="project"
-config/version="0.1.1"
+config/version="0.1.2"
 run/main_scene="uid://rvwsrcacbgax"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
@@ -27,7 +27,8 @@ shapes/paths/geometry_width=3.0
 
 [display]
 
-window/vsync/vsync_mode=2
+window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=3
 
 [editor]
 
