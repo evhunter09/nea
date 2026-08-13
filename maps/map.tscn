@@ -1,13 +1,20 @@
 [gd_scene format=3 uid="uid://ddfbdo2gelwd6"]
 
+[ext_resource type="Texture2D" uid="uid://bn0mv1wa4ghkj" path="res://assets/grid.png" id="1_d6q2c"]
 [ext_resource type="PackedScene" uid="uid://crf2tpamqqyqp" path="res://maps/path.tscn" id="2_e0an3"]
 [ext_resource type="Script" uid="uid://d1qcr7v7o1yk1" path="res://scripts/environment.gd" id="3_c3pkw"]
 [ext_resource type="PackedScene" uid="uid://b0hdc7jmncqjq" path="res://maps/path_node.tscn" id="3_e0an3"]
+[ext_resource type="Script" uid="uid://cyxcn5g7itnm3" path="res://player_indicator.gd" id="4_p5exx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e6lj2"]
 size = Vector3(18, 2.5, 12)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5exx"]
+albedo_texture = ExtResource("1_d6q2c")
+uv1_scale = Vector3(27, 12, 2.5)
+
 [sub_resource type="BoxMesh" id="BoxMesh_c7s6e"]
+material = SubResource("StandardMaterial3D_p5exx")
 size = Vector3(18, 2.5, 12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c7s6e"]
@@ -80,20 +87,55 @@ bump_strength = 11.4
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wijl4"]
 albedo_texture = SubResource("NoiseTexture2D_p5exx")
 normal_enabled = true
-normal_scale = -0.68
+normal_scale = -4.68
 normal_texture = SubResource("NoiseTexture2D_58o0d")
 heightmap_enabled = true
-heightmap_scale = 8.144
+heightmap_scale = 8.0
 heightmap_texture = SubResource("NoiseTexture2D_58o0d")
 subsurf_scatter_enabled = true
-subsurf_scatter_strength = 0.5
+subsurf_scatter_strength = 0.6
 uv1_scale = Vector3(4, 4, 4)
-proximity_fade_distance = 36.77
+proximity_fade_distance = 72.7
+stencil_flags = 2
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_e0an3"]
+material = SubResource("StandardMaterial3D_wijl4")
 size = Vector2(1000, 1000)
 subdivide_width = 2
 subdivide_depth = 2
+
+[sub_resource type="Curve3D" id="Curve3D_p5exx"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 2, 2.5, -3, 0, 0, 0, -1.1045696, 0, 0, 0, 2.5, -3, 0, 0, -1.1045696, 0, 0, 0, -2, 2.5, -0.99999994, 0, 0, 0, 0, 0, 1.1045696, -2, 2.5, 0.9999999, 1.1045696, 0, 0, 0, 0, 0, -4, 2.5, 3, 0, 0, 0, -2.209139, 0, 0, -6, 2.5, 3, 0, 0, 2.209139, 0, 0, 0, -10, 2.5, -1, 0, 0, 0, 0, 0, 0, -10, 2.5, -2),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+up_vector_enabled = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58o0d"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0, 1, 0.83333325, 0.5019608)
+albedo_texture = ExtResource("1_d6q2c")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ro41k"]
+material = SubResource("StandardMaterial3D_58o0d")
+top_radius = 0.8
+bottom_radius = 0.8
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8fwg"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0, 1, 0.83333325, 1)
+albedo_texture = ExtResource("1_d6q2c")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_68ouu"]
+material = SubResource("StandardMaterial3D_w8fwg")
+top_radius = 0.0
+bottom_radius = 0.25
+height = 1.6
 
 [sub_resource type="Shader" id="Shader_ers5l"]
 code = "shader_type sky;
@@ -235,7 +277,9 @@ offsets = PackedFloat32Array(0.12566137, 1)
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_p5exx"]
 noise_type = 0
 frequency = 0.016
+fractal_octaves = 6
 domain_warp_type = 2
+domain_warp_fractal_octaves = 3
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_w8fwg"]
 generate_mipmaps = false
@@ -462,57 +506,80 @@ mesh = SubResource("BoxMesh_gqbix")
 shape = SubResource("WorldBoundaryShape3D_e6lj2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="boundary" unique_id=2050525589]
-material_override = SubResource("StandardMaterial3D_wijl4")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_e0an3")
 
 [node name="path" parent="." unique_id=95894422 instance=ExtResource("2_e0an3")]
+curve = SubResource("Curve3D_p5exx")
 debug_custom_color = Color(1.1070073e-06, 0.4998786, 0.53484625, 1)
-node_list = Array[Node]([Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -3.25),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":0.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3.25),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":2.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -1.25),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":5.141592741012573,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 0.75),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":7.141592741012573,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, 2.75),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":0.2,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":10.283185482025146,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, 2.75),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":0.5,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":12.283185482025146,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+node_list = Array[Node]([Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, -3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":0.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":2.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, -0.99999994),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":5.141592741012573,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0.9999999),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":7.1415925,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":0.2,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":10.283185243606567,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, 3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":4.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":12.283185243606567,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -1),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":18.566370725631714,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -2),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":19.566370725631714,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
 ])
 
 [node name="PathNode" parent="path" unique_id=1780113298 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3, -3.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, -3)
 
 [node name="PathNode2" parent="path" unique_id=1214719074 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -3.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3)
 curve_rad = 2.0
 curve_dir = -1
 curve_angle = 1.5707964
 cum_distance = 2.0
 
 [node name="PathNode3" parent="path" unique_id=1104674472 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -1.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, -0.99999994)
 curve_dir = -1
 curve_angle = 1.5707964
 cum_distance = 5.141592741012573
 
 [node name="PathNode4" parent="path" unique_id=773738965 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, 0.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0.9999999)
 curve_rad = 2.0
 curve_dir = 1
 curve_angle = 1.5707964
-cum_distance = 7.141592741012573
+cum_distance = 7.1415925
 
 [node name="PathNode5" parent="path" unique_id=1375534026 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, 2.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 3)
 distance = 0.2
 curve_dir = 1
 curve_angle = 1.5707964
-cum_distance = 10.283185482025146
+cum_distance = 10.283185243606567
 
 [node name="PathNode6" parent="path" unique_id=1809057799 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3, 2.75)
-distance = 0.5
-cum_distance = 12.283185482025146
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, 3)
+curve_rad = 4.0
+curve_dir = 1
+curve_angle = 1.5707964
+cum_distance = 12.283185243606567
+
+[node name="PathNode7" parent="path" unique_id=1714023074 instance=ExtResource("3_e0an3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -1)
+curve_dir = 1
+curve_angle = 1.5707964
+cum_distance = 18.566370725631714
+
+[node name="PathNode8" parent="path" unique_id=1463986964 instance=ExtResource("3_e0an3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -2)
+cum_distance = 19.566370725631714
+
+[node name="playerIndicator" type="MeshInstance3D" parent="." unique_id=1273205119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
+mesh = SubResource("CylinderMesh_ro41k")
+script = ExtResource("4_p5exx")
+
+[node name="arrow" type="MeshInstance3D" parent="playerIndicator" unique_id=1259421074]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.4, -1.7484556e-08)
+mesh = SubResource("CylinderMesh_68ouu")
 
 [node name="sunLight" type="DirectionalLight3D" parent="." unique_id=2026949614]
-transform = Transform3D(0.9657812, -0.16989124, -0.19596879, 0.09281055, -0.4791713, 0.8728007, -0.24218385, -0.86112225, -0.447007, 0, 0, 0)
+transform = Transform3D(0.9657813, -0.16989136, -0.19596879, 0.09281051, -0.4791713, 0.8728007, -0.24218397, -0.86112225, -0.44700694, 0, 0, 0)
 light_color = Color(0.9951604, 0.9176824, 0.87120646, 1)
 shadow_enabled = true
 

@@ -4,5 +4,6 @@ extends Node3D
 
 func _ready() -> void:
 	# IN GAME: player setup
-	var start_pos = path.get_pos_on_path(0)
+	var start_pos = path.get_pos_on_path()
 	$player.transform = start_pos
+	# $player._progress = 0

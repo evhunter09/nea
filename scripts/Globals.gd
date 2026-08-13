@@ -1,7 +1,7 @@
 extends Node
 
 @export  var game_state:State = State.IN_GAME
-@export  var world_state:WorldState = WorldState.MOVING
+@export  var world_state:WorldState = WorldState.COMBAT
 @export var level = null
 @export var difficulty:Difficulty
 @export_flags("Headshots only", "Weapons limited", "Melee only", "No cover", "Timed")

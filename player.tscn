@@ -3,13 +3,12 @@
 [ext_resource type="Script" uid="uid://bs0nepjlsan1m" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bqepe4lsds15o" path="res://assets/characters/ttt.png" id="2_i3pqv"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hqtel"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
 albedo_texture = ExtResource("2_i3pqv")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3pqv"]
+uv1_offset = Vector3(0.5, 0, 0)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_i3pqv"]
-material = SubResource("StandardMaterial3D_i3pqv")
+material = SubResource("StandardMaterial3D_onrkg")
 height = 1.9
 radial_segments = 32
 
@@ -19,7 +18,6 @@ height = 1.9
 
 [node name="player" type="CharacterBody3D" unique_id=73387224]
 script = ExtResource("1_onrkg")
-SPRINT_MULTI = 2.0
 
 [node name="pivot" type="Marker3D" parent="." unique_id=1079798912]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
@@ -33,7 +31,6 @@ margin = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1909136856]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
-material_override = SubResource("StandardMaterial3D_hqtel")
 mesh = SubResource("CapsuleMesh_i3pqv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=113861005]

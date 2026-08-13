@@ -12,10 +12,11 @@ resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_pj3yd")
 top_radius = 1.0
 bottom_radius = 1.0
-height = 0.25
+height = 0.2
 
 [node name="PathNode" type="Marker3D" unique_id=1780113298]
 script = ExtResource("1_7fts8")
 
 [node name="debug" type="MeshInstance3D" parent="." unique_id=164770011]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 mesh = SubResource("CylinderMesh_7fts8")

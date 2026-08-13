@@ -4,9 +4,9 @@ class_name Path extends Path3D
 @export var node_list: Array
 
 var _distance := 0.0
+var TEMP = 0
 
-
-func calc_curve_properties(i, nodes):
+func calc_curve_properties(i: int, nodes: Array):
 	var n = nodes[i]
 	if i != nodes.size()-1 and i != 0: # cant calculate angle for start / end
 
@@ -33,7 +33,6 @@ func calc_curve_properties(i, nodes):
 func create_path(nodes: Array):
 	curve.clear_points() # ensures it is reset between levels, or editing
 	for i in nodes.size():
-		#print(i)
 		var n = nodes[i]
 		var out_rad_vector = Vector3(0,0,0)
 		var in_rad_vector = Vector3(0,0,0)
@@ -52,7 +51,6 @@ func create_path(nodes: Array):
 		calc_curve_properties(i, nodes)
 
 
-
 func _ready():
 	node_list = get_children()
 	# Marker3D is node class of each path node (instead of PathNode)
@@ -65,14 +63,19 @@ func _ready():
 
 func _get_current_node(progress: float):
 	for i in node_list.size():
+		#print(i)
 		node_list[i].highlighted = false
-		if progress < node_list[i].cum_distance:
+		if progress <= node_list[i].cum_distance:
 			node_list[i-1].highlighted = true
+			TEMP = i - 1
 			return node_list[i - 1] # if behind first node will return last (should never be)
+	TEMP = -1
 	return node_list[-1] # last
 
 
-func get_pos_on_path(progress: float): # not needed now, might need to snap to points because of inaccuracy
+func get_pos_on_path(progress: float = 0.0):
+	# not needed for path now, might need to snap to points because of inaccuracy
+	# used for moving to (new) paths
 	return curve.sample_baked_with_rotation(progress, true)
 	
 func get_direction(progress: float):
@@ -80,15 +83,17 @@ func get_direction(progress: float):
 	return pos.basis.get_euler()
 
 func get_progress_change(progress: float, offset: float) -> float:
-	# returns proportion of default change, to multiply by a constant multiplier
+	# returns proportion of default change, to multiply by some value
 	var node = _get_current_node(progress)
 	if node.curve_rad > 0:
-		var radius = node.curve_rad * node.curve_dir
-		return (radius + offset) / radius
+		var radius = node.curve_rad * node.curve_dir # adds sign - minus = left
+		# NOTE: cant be at arc centre (offset = radius) - crash division by 0
+		return radius / (radius - offset)
 	else:
-		return 1 # straight segments are constant everywhere
+		return 1.0 # straight segments are constant everywhere
 
 
 func get_allowed_offset(progress: float):
 	var node = _get_current_node(progress)
-	return node.distance # instantly changes distance - not currently interpolate
+	return node.distance # instantly changes value - not currently interpolate
+	# does still approach max value if above while moving
