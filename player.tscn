@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bs0nepjlsan1m" path="res://scripts/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bqepe4lsds15o" path="res://assets/characters/ttt.png" id="2_i3pqv"]
+[ext_resource type="PackedScene" uid="uid://hh3i4wqthgm" path="res://ui/crosshair.tscn" id="3_i3pqv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
 albedo_texture = ExtResource("2_i3pqv")
@@ -36,3 +37,5 @@ mesh = SubResource("CapsuleMesh_i3pqv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=113861005]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 shape = SubResource("CapsuleShape3D_hqtel")
+
+[node name="crosshair" parent="." unique_id=4015044 instance=ExtResource("3_i3pqv")]

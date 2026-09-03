@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://hh3i4wqthgm"]
+
+[ext_resource type="Texture2D" uid="uid://v4gj8fvq4hvn" path="res://assets/textures/crosshair.svg" id="1_1gxxw"]
+[ext_resource type="Script" uid="uid://bq6nh1yeduhfd" path="res://scripts/ui/crosshair.gd" id="2_q78qa"]
+
+[node name="crosshair" type="TextureRect" unique_id=4015044]
+self_modulate = Color(1, 0, 0, 1)
+offset_right = 48.0
+offset_bottom = 48.0
+offset_transform_enabled = true
+mouse_filter = 2
+texture = ExtResource("1_1gxxw")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_q78qa")

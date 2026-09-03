@@ -26,11 +26,13 @@ var _offset := 0.0     # units from path
 var _progress := 0.0
 var TEMP
 var offset_limit: float
+var aim_point: Vector2 # pixels
 
 enum State {ALIVE, DEAD}
 enum Movement {WALK, RUN, JUMP, DUCK, IN_COVER, PEAK, SLIDE}
 
 var ws = Globals.WorldState
+
 
 
 func duck():
@@ -84,7 +86,7 @@ func reset_movement():
 	move_speed = DEFAULT_MOVE_SPEED
 
 func _ready() -> void:
-	camera_pivot.rotation.x = -PI / 2 + deg_to_rad(15) # DEBUG top down view - minusing default 15 rotation
+	#camera_pivot.rotation.x = -PI / 2 + deg_to_rad(15) # DEBUG top down view - minusing default 15 rotation
 	reset_movement()
 	print("this is game")
 
@@ -123,4 +125,7 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	do_path_movement(delta) # from current frame, after physics applied
-	#if velocity: print(rad_to_deg(path.get_direction(_progress).y - next_dir)) # any error
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		aim_point = event.position

@@ -7,3 +7,4 @@ func _ready() -> void:
 	var start_pos = path.get_pos_on_path()
 	$player.transform = start_pos
 	# $player._progress = 0
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
