@@ -1,8 +1,9 @@
 class_name Player extends CharacterBody3D
-@onready var camera_pivot = $pivot
-@onready var collision = $CollisionShape3D
-@onready var visuals = $MeshInstance3D
-@onready var path = $"../world/path" # constant reference hopefully
+@onready var camera_pivot := $pivot
+@onready var collision := $CollisionShape3D
+@onready var visuals := $MeshInstance3D
+@onready var camera := $pivot/SpringArm3D/Camera3D
+@onready var path := $"../world/path" # constant reference hopefully, cant use global variable yet
 
 @export var DEFAULT_MOVE_SPEED := 5.0
 @export var SPRINT_MULTI := 1.4
@@ -17,8 +18,8 @@ class_name Player extends CharacterBody3D
 @export var state: State
 @export var health: int
 @export var lives: int
-@export var holding := []
-@export var inventory := {}
+@export var holding: Array[Weapon] = []
+@export var inventory := {1: 15}
 @export var movement: Movement
 var points: int
 var move_speed: float
@@ -129,3 +130,5 @@ func _physics_process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		aim_point = event.position
+	if event is InputEventMouseButton: if event.pressed:
+		$holdLocation/pistol.user_input(self)

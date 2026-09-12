@@ -1,6 +1,7 @@
-extends Node3D
+extends Node
 
-@onready var path = $world/path
+@onready var world := $world 
+@onready var path := $world/path
 
 func _ready() -> void:
 	# IN GAME: player setup

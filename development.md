@@ -15,10 +15,9 @@
 
 
 # TASKS
-1) WEAPON SYSTEM
-2) EXAMPLE WEAPON (pistol)
-3) AREA SYSTEM (is in combat)
-4) EXAMPLE MAP WITH PATH
+3) ENEMIES
+4) AREA SYSTEM (is in combat)
+5) EXAMPLE MAP WITH PATH
 
 ### FUTURE DEV
 - path: add current attrib (and id) - allow multiple
@@ -27,3 +26,4 @@
 
 ### TO REMEMBER (warnings)
 - dont have curve in 1 axis -> curve in another - leave a straight like if on same axis
+- gun anims affect useLocation - bad if use it inbetween shots, add separate node3d for anim?

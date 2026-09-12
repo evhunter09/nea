@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://lde00cfbqrut"]
+
+[ext_resource type="PackedScene" uid="uid://hs82iasy87iq" path="res://weapons/weapon.tscn" id="1_es75o"]
+
+[node name="Gun" unique_id=1043645253 instance=ExtResource("1_es75o")]

@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://caqh0ia4poe0q"]
+
+[ext_resource type="PackedScene" uid="uid://jjcilqxsy0f6" path="res://weapons/hitscan_gun.tscn" id="1_1ohd4"]
+[ext_resource type="Script" uid="uid://ckvneu8ltbn6i" path="res://scripts/weapons/pistol.gd" id="2_5icxk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mqy27"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_r5483"]
+material = SubResource("StandardMaterial3D_mqy27")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.3
+radial_segments = 16
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5icxk"]
+height = 0.3
+radius = 0.05
+
+[sub_resource type="Animation" id="Animation_f30ot"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:reloading")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fcwqf"]
+resource_name = "fire"
+length = 0.2
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.033333335, 1, 0, 0, 0.05, 0.13333334, 1, 0, 0, -0.01, 0.2, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, 0.052336, 0, 0, 0.99863, 0.13333334, 1, -0.026177, 0, 0, 0.999657, 0.16666667, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_o30jq"]
+resource_name = "reload"
+length = 0.56666666
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.108333334, 1, 0.05, 0.03, -0.03, 0.23333333, 1, 0.06, 0.03, -0.02, 0.33333334, 1, 0.05, 0.03, 0, 0.4, 1, 0.05, 0.03, 0, 0.5, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.108333334, 1, 0.085832, 0.015134, -0.172987, 0.98106, 0.23333333, 1, 0.085832, 0.015134, -0.172987, 0.98106, 0.33333334, 1, 0.127432, 0.028251, -0.214588, 0.967944, 0.4, 1, 0.127432, 0.028251, -0.214588, 0.967944, 0.5, 1, 0, 0, 0, 1, 0.56666666, 1, 0, 0, 0, 1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:reloading")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.56666666),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_5icxk"]
+resource_name = "use"
+length = 0.1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.033333335, 1, 0, 0, 0.005, 0.06666667, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, -0.008727, 0, 0, 0.999962, 0.1, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f30ot"]
+_data = {
+&"RESET": SubResource("Animation_f30ot"),
+&"fire": SubResource("Animation_fcwqf"),
+&"reload": SubResource("Animation_o30jq"),
+&"use": SubResource("Animation_5icxk")
+}
+
+[node name="pistol" unique_id=1043645253 instance=ExtResource("1_1ohd4")]
+script = ExtResource("2_5icxk")
+
+[node name="mesh" parent="." index="0" unique_id=519396765]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.15)
+mesh = SubResource("CylinderMesh_r5483")
+
+[node name="CollisionShape3D" parent="physics" parent_id_path=PackedInt32Array(1793602956) index="0" unique_id=1631808763]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.15)
+shape = SubResource("CylinderShape3D_5icxk")
+
+[node name="AnimationPlayer" parent="." index="4" unique_id=1930136047]
+libraries/ = SubResource("AnimationLibrary_f30ot")

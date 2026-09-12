@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://i8t34c4eodxn"]
+
+[ext_resource type="Script" uid="uid://b2xaakoyb7nef" path="res://scripts/weapons/bullet_trail.gd" id="1_h2ktn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2ktn"]
+resource_local_to_scene = true
+transparency = 1
+emission_enabled = true
+emission = Color(1, 0.68333334, 0, 1)
+emission_energy_multiplier = 2.0
+disable_receive_shadows = true
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_lqxt6"]
+resource_local_to_scene = true
+
+[node name="bulletTrail" type="MeshInstance3D" unique_id=131534623]
+material_override = SubResource("StandardMaterial3D_h2ktn")
+mesh = SubResource("ImmediateMesh_lqxt6")
+script = ExtResource("1_h2ktn")
+
+[node name="Timer" type="Timer" parent="." unique_id=2064901899]
+process_callback = 0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

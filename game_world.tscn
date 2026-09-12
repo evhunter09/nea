@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://d1e6301qt30f3" path="res://player.tscn" id="2_ea1x0"]
 [ext_resource type="Script" uid="uid://bmilkxa7wnhbh" path="res://scripts/debug.gd" id="4_e08lw"]
 
-[node name="Game" type="Node3D" unique_id=990318036]
+[node name="Game" type="Node" unique_id=507370934]
 script = ExtResource("1_ea1x0")
 
 [node name="player" parent="." unique_id=73387224 instance=ExtResource("2_ea1x0")]
