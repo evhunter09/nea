@@ -4,7 +4,7 @@ class_name Path extends Path3D
 @export var node_list: Array
 
 var _distance := 0.0
-var TEMP = 0
+var TEMP = 0 # for debugging
 
 func calc_curve_properties(i: int, nodes: Array):
 	var n = nodes[i]
@@ -53,8 +53,8 @@ func create_path(nodes: Array):
 
 func _ready():
 	node_list = get_children()
-	# Marker3D is node class of each path node (instead of PathNode)
-	node_list = node_list.filter(func(n): return n.get_class() == "Marker3D")
+	# PathNode is nodes' class, will print error if opening path scene
+	node_list = node_list.filter(func(n): return n is PathNode)
 	assert(not node_list.is_empty(), "Path needs at least 1 pathNode")
 	
 	create_path(node_list)
