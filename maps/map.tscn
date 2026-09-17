@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://d1qcr7v7o1yk1" path="res://scripts/environment.gd" id="3_c3pkw"]
 [ext_resource type="PackedScene" uid="uid://b0hdc7jmncqjq" path="res://maps/path_node.tscn" id="3_e0an3"]
 [ext_resource type="Script" uid="uid://cyxcn5g7itnm3" path="res://player_indicator.gd" id="4_p5exx"]
+[ext_resource type="PackedScene" uid="uid://bt47mvfgelm3e" path="res://enemies/enemy.tscn" id="6_58o0d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e6lj2"]
 size = Vector3(18, 2.5, 12)
@@ -610,3 +611,6 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1395907628]
 environment = SubResource("Environment_p5exx")
 script = ExtResource("3_c3pkw")
+
+[node name="Enemy" parent="." unique_id=1678883102 instance=ExtResource("6_58o0d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59183645, 2.5000002, 3.5783863)

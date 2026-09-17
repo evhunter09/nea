@@ -7,7 +7,7 @@ class_name Player extends CharacterBody3D
 
 @export var DEFAULT_MOVE_SPEED := 5.0
 @export var SPRINT_MULTI := 1.4
-@export var JUMP = 45      # velocity at instant when jumping
+@export var JUMP := 3.0     # velocity at instant when jumping
 @export var FRICTION := 3.0 # deceleration when not moving (per frame)
 @export var SENSITIVITY = deg_to_rad(5) # rotation per frame (x60 per second)
 
@@ -89,11 +89,12 @@ func reset_movement():
 func _ready() -> void:
 	#camera_pivot.rotation.x = -PI / 2 + deg_to_rad(15) # DEBUG top down view - minusing default 15 rotation
 	reset_movement()
+	Globals.players.append(self)
 	print("this is game")
 
 func _physics_process(delta):
 	if not is_on_floor():  # falling
-		velocity += get_gravity()
+		velocity += get_gravity() * delta
 	elif Input.is_action_just_pressed("player1_jump"): # is on floor
 		velocity.y = JUMP
 	elif Input.is_action_just_pressed("player1_duck"): # exclusive with jumping and falling

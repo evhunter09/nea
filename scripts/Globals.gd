@@ -9,7 +9,7 @@ var game_modifiers := 0
 @export var game_save := -1
 @export var game_stats := {}
 @export var current_screen:Screen
-@export var players := []
+@export var players: Array[Player] = []
 var curr_enemies: int = 0
 
 enum State {MENU, LOADING, IN_GAME, PAUSED, EXITING}

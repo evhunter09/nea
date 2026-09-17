@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bt47mvfgelm3e"]
+
+[ext_resource type="Script" uid="uid://d11m3qtjbw5p" path="res://scripts/enemies/enemy.gd" id="1_fw1ev"]
+[ext_resource type="Texture2D" uid="uid://cyy4rpai2cifw" path="res://assets/characters/Javier Bardem.png" id="2_7frlh"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ro41k"]
+radius = 0.6
+height = 1.9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_orwns"]
+albedo_texture = ExtResource("2_7frlh")
+heightmap_enabled = true
+heightmap_texture = ExtResource("2_7frlh")
+uv1_offset = Vector3(-0.5, -0.05, 0)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ro41k"]
+material = SubResource("StandardMaterial3D_orwns")
+height = 1.9
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1678883102]
+collision_layer = 3
+script = ExtResource("1_fw1ev")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1536589078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+shape = SubResource("CapsuleShape3D_ro41k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=115052747]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+mesh = SubResource("CapsuleMesh_ro41k")
+
+[node name="view_ray" type="RayCast3D" parent="." unique_id=938280385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4000001, 0)
+target_position = Vector3(0, 0, -10)
+collision_mask = 14
