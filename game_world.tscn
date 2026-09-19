@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://o548k6mtefj8" path="res://scripts/game.gd" id="1_ea1x0"]
 [ext_resource type="PackedScene" uid="uid://d1e6301qt30f3" path="res://player.tscn" id="2_ea1x0"]
 [ext_resource type="Script" uid="uid://bmilkxa7wnhbh" path="res://scripts/debug.gd" id="4_e08lw"]
+[ext_resource type="PackedScene" uid="uid://ch56ws2nlhmo0" path="res://ui/hud.tscn" id="5_e3xe6"]
 
 [node name="Game" type="Node" unique_id=507370934]
 script = ExtResource("1_ea1x0")
@@ -23,3 +24,5 @@ theme_override_font_sizes/font_size = 30
 text = "PLAYER vars:
 "
 script = ExtResource("4_e08lw")
+
+[node name="HUD" parent="." unique_id=1936340503 instance=ExtResource("5_e3xe6")]

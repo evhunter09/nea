@@ -2,6 +2,7 @@ extends Node
 
 @onready var world := $world 
 @onready var path := $world/path  #cant be used in other node's ready()
+@onready var HUD := $HUD
 
 func _ready() -> void:
 	# IN GAME: player setup

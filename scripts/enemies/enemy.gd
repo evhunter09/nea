@@ -6,6 +6,7 @@ class_name Enemy extends Character
 @export var view_distance := 10 # units
 @export var turn_speed := deg_to_rad(2) # degrees per frame
 @export var accuracy := 0.02
+@export var points_value := 100
 
 
 func randomise_direction():
@@ -53,6 +54,8 @@ func on_hit(damage, by):
 		health = max(health - damage, 0)
 	super(damage, by)
 	
-func die():
+func die(from: Character):
+	from.points += points_value
+	$/root/Game.HUD.points_changed(from.points)
 	$AnimationPlayer.play("die")
-	super()
+	super(from)

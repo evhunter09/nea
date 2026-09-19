@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://ch56ws2nlhmo0"]
+
+[ext_resource type="Script" uid="uid://883jh3r5tjjv" path="res://scripts/ui/hud.gd" id="1_276te"]
+
+[sub_resource type="Theme" id="Theme_ro41k"]
+default_font_size = 40
+
+[node name="HUD" type="Control" unique_id=162996617]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1152.0
+offset_bottom = -648.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = SubResource("Theme_ro41k")
+script = ExtResource("1_276te")
+
+[node name="ScoreContainer" type="PanelContainer" parent="." unique_id=846821324]
+layout_mode = 1
+offset_right = 225.0
+offset_bottom = 60.0
+
+[node name="ScoreText" type="Label" parent="ScoreContainer" unique_id=1932006336]
+layout_mode = 2
+text = "SCORE:"
+clip_text = true
+uppercase = true
+
+[node name="ScoreNum" type="Label" parent="ScoreContainer" unique_id=1583203426]
+layout_mode = 2
+text = "0"
+horizontal_alignment = 2
+clip_text = true
+uppercase = true
