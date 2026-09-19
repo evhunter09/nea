@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d11m3qtjbw5p" path="res://scripts/enemies/enemy.gd" id="1_fw1ev"]
 [ext_resource type="Texture2D" uid="uid://cyy4rpai2cifw" path="res://assets/characters/Javier Bardem.png" id="2_7frlh"]
+[ext_resource type="PackedScene" uid="uid://caqh0ia4poe0q" path="res://weapons/pistol.tscn" id="3_orwns"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ro41k"]
 radius = 0.6
@@ -16,6 +17,71 @@ uv1_offset = Vector3(-0.5, -0.05, 0)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_ro41k"]
 material = SubResource("StandardMaterial3D_orwns")
 height = 1.9
+
+[sub_resource type="Animation" id="Animation_orwns"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_a6vjd"]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.46666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.5, 1, 5, 5, 5)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_07tka"]
+_data = {
+&"RESET": SubResource("Animation_orwns"),
+&"die": SubResource("Animation_a6vjd")
+}
 
 [node name="Enemy" type="CharacterBody3D" unique_id=1678883102]
 collision_layer = 3
@@ -33,3 +99,11 @@ mesh = SubResource("CapsuleMesh_ro41k")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4000001, 0)
 target_position = Vector3(0, 0, -10)
 collision_mask = 14
+
+[node name="holdLocation" type="Marker3D" parent="." unique_id=597386484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.95, -0.4)
+
+[node name="weapon" parent="holdLocation" unique_id=1043645253 instance=ExtResource("3_orwns")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2132612510]
+libraries/ = SubResource("AnimationLibrary_07tka")

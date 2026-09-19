@@ -10,15 +10,15 @@ var ammo: int
 func _ready():
 	type = Gun
 
-func use(player):
+func use(user):
 	if not reloading:
-		super(player) # default click animation - will be able to play if no ammo
+		super(user) # default click animation - will be able to play if no ammo
 		if ammo > 0:
-			fire(player)
-		elif player.inventory[ammo_type] > 0:
-			reload(player)
+			fire(user)
+		elif user.inventory[ammo_type] > 0:
+			reload(user)
 	
-func fire(player: Player):
+func fire(user: Character):
 	anim_player.play("fire")
 
 @abstract func reload(player: Player);

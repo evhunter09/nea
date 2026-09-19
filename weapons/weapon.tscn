@@ -2,6 +2,8 @@
 
 [sub_resource type="PlaceholderMesh" id="PlaceholderMesh_tsf64"]
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rma5x"]
+
 [node name="Weapon" type="Node3D" unique_id=1043645253]
 
 [node name="mesh" type="MeshInstance3D" parent="." unique_id=519396765]
@@ -20,3 +22,4 @@ process_mode = 4
 [node name="CollisionShape3D" type="CollisionShape3D" parent="physics" unique_id=1631808763]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1930136047]
+libraries/ = SubResource("AnimationLibrary_rma5x")

@@ -27,10 +27,11 @@ script = ExtResource("1_onrkg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="pivot" unique_id=1790480659]
-transform = Transform3D(1, 0, 0, 0, 0.9659259, 0.25881907, 0, -0.25881907, 0.9659258, 0, 0.08965755, 0.061865855)
+transform = Transform3D(1, 0, 0, 0, 0.9659258, 0.25881904, 0, -0.25881904, 0.9659258, 0, 0, 0)
 spring_length = 4.5
 margin = 0.1
 script = ExtResource("2_sweqy")
+firstperson_offset = Vector3(0, 0, -0.2)
 
 [node name="Camera3D" type="Camera3D" parent="pivot/SpringArm3D" unique_id=2039921465]
 
@@ -45,7 +46,7 @@ shape = SubResource("CapsuleShape3D_hqtel")
 [node name="crosshair" parent="." unique_id=4015044 instance=ExtResource("3_i3pqv")]
 
 [node name="holdLocation" type="Marker3D" parent="." unique_id=919284151]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.90000004, -0.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.9, -0.5)
 
 [node name="pistol" parent="holdLocation" unique_id=1043645253 instance=ExtResource("4_hqtel")]
 

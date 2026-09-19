@@ -5,17 +5,23 @@ class_name Weapon extends Node3D
 
 var type = null
 @export var needs_ammo: bool
-@export var cooldown: float # milliseconds
+@export var cooldown: int # milliseconds
+@export var damage: int # may be modified later (for players mainly)
+@export var equip_time: int # milliseconds
 
-var _next_use := 0.0
+var next_use := 0
 
 
-func user_input(player: Player):
-	if Time.get_ticks_msec() >= _next_use:
-		_next_use = Time.get_ticks_msec() + cooldown # allow custom delays eg reload
-		use(player)
+func user_input(user: Character):
+	if Time.get_ticks_msec() >= next_use:
+		next_use = Time.get_ticks_msec() + cooldown # allow custom delays eg reload
+		use(user)
 
-func use(player: Player):
+func use(user: Character):
 	anim_player.play("use") # anim for just clicking
 
-@abstract func weapon_hit(object: Node, location: Vector3);
+func get_out(user: Character):
+	next_use = Time.get_ticks_msec() + equip_time
+	anim_player.play("equip")
+
+@abstract func weapon_hit(object: Node, location: Vector3, user: Character);

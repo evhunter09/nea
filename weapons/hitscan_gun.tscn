@@ -3,6 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://lde00cfbqrut" path="res://weapons/gun.tscn" id="1_6vgy3"]
 
 [node name="HitscanGun" unique_id=1043645253 instance=ExtResource("1_6vgy3")]
-
-[node name="useLocation" parent="." index="1" unique_id=575683928]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0, 0)

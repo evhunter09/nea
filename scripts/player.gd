@@ -1,4 +1,4 @@
-class_name Player extends CharacterBody3D
+class_name Player extends Character
 @onready var camera_pivot := $pivot
 @onready var collision := $CollisionShape3D
 @onready var visuals := $MeshInstance3D
@@ -15,11 +15,8 @@ class_name Player extends CharacterBody3D
 @onready var DEFAULT_HEIGHT = collision.shape.height
 
 @export_group("Game state")
-@export var state: State
-@export var health: int
 @export var lives: int
 @export var holding: Array[Weapon] = []
-@export var inventory := {1: 15}
 @export var movement: Movement
 var points: int
 var move_speed: float
@@ -29,7 +26,6 @@ var TEMP
 var offset_limit: float
 var aim_point: Vector2 # pixels
 
-enum State {ALIVE, DEAD}
 enum Movement {WALK, RUN, JUMP, DUCK, IN_COVER, PEAK, SLIDE}
 
 var ws = Globals.WorldState
@@ -87,10 +83,13 @@ func reset_movement():
 	move_speed = DEFAULT_MOVE_SPEED
 
 func _ready() -> void:
+	health = 5
+	inventory = {1: 15}
 	#camera_pivot.rotation.x = -PI / 2 + deg_to_rad(15) # DEBUG top down view - minusing default 15 rotation
 	reset_movement()
 	Globals.players.append(self)
 	print("this is game")
+	$holdLocation/pistol.get_out(self)
 
 func _physics_process(delta):
 	if not is_on_floor():  # falling
@@ -131,5 +130,6 @@ func _physics_process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		aim_point = event.position
+	view_direction = camera.project_ray_normal(aim_point)
 	if event is InputEventMouseButton: if event.pressed:
 		$holdLocation/pistol.user_input(self)
