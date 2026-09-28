@@ -1,6 +1,6 @@
 class_name Character extends CharacterBody3D
 
-### for weapon users
+##for weapon users
 @export_group("Game state")
 @export var state: State
 @export var health: int

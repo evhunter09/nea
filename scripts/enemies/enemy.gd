@@ -11,8 +11,8 @@ class_name Enemy extends Character
 
 func randomise_direction():
 	view_direction = (view_direction + Vector3(randf_range(-accuracy, accuracy),
-							randf_range(-accuracy, accuracy),
-							randf_range(-accuracy, accuracy))).normalized()
+											randf_range(-accuracy, accuracy),
+											randf_range(-accuracy, accuracy))).normalized()
 
 func track_player():
 	if player.position.distance_to(position) < view_distance:
@@ -53,7 +53,7 @@ func on_hit(damage, by):
 	if by is Player:
 		health = max(health - damage, 0)
 	super(damage, by)
-	
+
 func die(from: Character):
 	from.points += points_value
 	$/root/Game.HUD.points_changed(from.points)

@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c0aun5uq486nt"]
+
+[ext_resource type="Script" uid="uid://sodahy5hragw" path="res://scripts/world/cover.gd" id="1_qf7x0"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_5p5ba"]
+size = Vector3(2, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ljhmp"]
+size = Vector3(2, 1, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lqxt6"]
+size = Vector3(2, 1, 0.2)
+
+[node name="cover" type="StaticBody3D" unique_id=1588800309]
+collision_layer = 5
+script = ExtResource("1_qf7x0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=897086549]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_5p5ba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=814255936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ljhmp")
+
+[node name="coverArea" type="Area3D" parent="." unique_id=1324496284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.45)
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="coverArea" unique_id=1833771417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.1)
+shape = SubResource("BoxShape3D_lqxt6")
+
+[connection signal="body_entered" from="coverArea" to="." method="_on_cover_area_body_entered"]
+[connection signal="body_exited" from="coverArea" to="." method="_on_cover_area_body_exited"]

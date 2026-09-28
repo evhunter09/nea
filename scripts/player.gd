@@ -25,28 +25,60 @@ var _progress := 0.0
 var TEMP
 var offset_limit: float
 var aim_point: Vector2 # pixels
+var current_cover = null
 
 enum Movement {WALK, RUN, JUMP, DUCK, IN_COVER, PEAK, SLIDE}
 
-var ws = Globals.WorldState
+var WS = Globals.WorldState
 
 
+
+func enter_cover(cover: Cover): # sent from each cover
+	print(cover)
+	if Globals.world_state == WS.COMBAT:
+		movement = Movement.IN_COVER
+		enter_crouch()
+		current_cover = cover
+		
+func leave_cover():
+	if Globals.world_state == WS.COMBAT:
+		movement = Movement.WALK
+		reset_movement()
+		current_cover = null
+
+func stick_to_cover(cover: Cover, direction):
+	#var dir = cover.basis.z # forward for cover is z (- for cover and player)
+	
+	# rotates input direction to face cover (still relative to player)
+	var dir = Vector3(direction.x, 0, direction.y) # cant do basis transform with vector2
+	dir = global_basis.inverse() * cover.basis * dir
+	return Vector2(dir.x, dir.z)
+
+
+func enter_crouch():
+	visuals.mesh.height = DEFAULT_HEIGHT * CROUCH_HEIGHT_MULTI
+	collision.shape.height = DEFAULT_HEIGHT * CROUCH_HEIGHT_MULTI
 
 func duck():
 	print("duck: ", movement)
-	if movement == Movement.DUCK:
-		movement = Movement.WALK  # default
-		visuals.mesh.height = DEFAULT_HEIGHT
-		collision.shape.height = DEFAULT_HEIGHT
-	elif movement == Movement.RUN: # to slide
-		print("slide (TODO)")
-	else:
-		movement = Movement.DUCK
-		visuals.mesh.height = DEFAULT_HEIGHT * CROUCH_HEIGHT_MULTI
-		collision.shape.height = DEFAULT_HEIGHT * CROUCH_HEIGHT_MULTI
+	match movement:
+		Movement.IN_COVER:
+			movement = Movement.PEAK
+			reset_movement()
+		Movement.PEAK:
+			movement = Movement.IN_COVER
+			enter_crouch()
+		Movement.DUCK:
+			movement = Movement.WALK
+			reset_movement()  # default
+		Movement.RUN: # to slide
+			print("slide (TODO)")
+		_:
+			movement = Movement.DUCK
+			enter_crouch()
 
 func run():
-	if Globals.world_state == ws.MOVING:
+	if Globals.world_state == WS.MOVING:
 		movement = Movement.WALK
 		move_speed = DEFAULT_MOVE_SPEED
 	else:
@@ -66,6 +98,8 @@ func do_path_movement(delta):
 func limit_path_movement(inputs):
 	offset_limit = path.get_allowed_offset(_progress)
 	var direction = inputs
+	if movement == Movement.IN_COVER:
+		direction = stick_to_cover(current_cover, direction)
 	
 	if abs(_offset) > offset_limit:
 		var amount = abs(_offset) - offset_limit
@@ -79,7 +113,8 @@ func limit_path_movement(inputs):
 
 
 func reset_movement():
-	movement = Movement.WALK
+	visuals.mesh.height = DEFAULT_HEIGHT
+	collision.shape.height = DEFAULT_HEIGHT
 	move_speed = DEFAULT_MOVE_SPEED
 
 func _ready() -> void:
@@ -102,6 +137,7 @@ func _physics_process(delta):
 		run()
 	else:
 		if movement == Movement.RUN: # resets to default speed ONLY if was sprinting
+			movement = Movement.WALK
 			reset_movement()
 	
 	var rel_velocity
