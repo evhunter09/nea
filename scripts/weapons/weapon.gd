@@ -5,9 +5,9 @@ class_name Weapon extends Node3D
 
 var type = null
 @export var needs_ammo: bool
-@export var cooldown: int # milliseconds
-@export var damage: int # may be modified later (for players mainly)
-@export var equip_time: int # milliseconds
+@export var cooldown: int ## Milliseconds
+@export var damage: int ## May be modified later in calculations (for players mainly)
+@export var equip_time: int ## Milliseconds
 
 var next_use := 0
 

@@ -3,9 +3,9 @@ class_name Enemy extends Character
 @onready var player: Player = Globals.players[0]
 @onready var weapon: Weapon = $holdLocation/weapon
 
-@export var view_distance := 10 # units
-@export var turn_speed := deg_to_rad(2) # degrees per frame
-@export var accuracy := 0.02
+@export var view_distance := 10 ## Units
+@export var turn_speed := deg_to_rad(2) ## Degrees per frame
+@export var accuracy := 0.02 ## in both direction, when shooting
 @export var points_value := 100
 
 
@@ -22,8 +22,8 @@ func track_player():
 		var angle = target_rotation.get_euler().y
 		rotation.y = rotate_toward(rotation.y, angle, turn_speed)
 
-		$view_ray.rotation.x = target_rotation.get_euler().x # aims at head area
-		# - same height above bottom of player as height of raycast
+		$view_ray.rotation.x = target_rotation.get_euler().x # aims at head area -
+		# same height above bottom of player as height of raycast
 
 func try_shoot():
 	if Time.get_ticks_msec() > weapon.next_use:

@@ -7,9 +7,9 @@ class_name Player extends Character
 
 @export var DEFAULT_MOVE_SPEED := 5.0
 @export var SPRINT_MULTI := 1.4
-@export var JUMP := 3.0     # velocity at instant when jumping
-@export var FRICTION := 3.0 # deceleration when not moving (per frame)
-@export var SENSITIVITY = deg_to_rad(5) # rotation per frame (x60 per second)
+@export var JUMP := 3.0     ## Velocity at instant when jumping
+@export var FRICTION := 3.0 ## Deceleration when not moving (per frame)
+@export var SENSITIVITY: float
 
 @export var CROUCH_HEIGHT_MULTI := 0.8
 @onready var DEFAULT_HEIGHT = collision.shape.height
@@ -20,11 +20,11 @@ class_name Player extends Character
 @export var movement: Movement
 var points: int
 var move_speed: float
-var _offset := 0.0     # units from path
-var _progress := 0.0
+var _offset := 0.0   ## Units from path
+var _progress := 0.0 ## Units from path
 var TEMP
 var offset_limit: float
-var aim_point: Vector2 # pixels
+var aim_point: Vector2 ## Pixels
 var current_cover = null
 
 enum Movement {WALK, RUN, JUMP, DUCK, IN_COVER, PEAK, SLIDE}
@@ -33,7 +33,7 @@ var WS = Globals.WorldState
 
 
 
-func enter_cover(cover: Cover): # sent from each cover
+func enter_cover(cover: Cover): ## sent from each cover
 	print(cover)
 	if Globals.world_state == WS.COMBAT:
 		movement = Movement.IN_COVER

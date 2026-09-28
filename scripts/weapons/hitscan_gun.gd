@@ -1,7 +1,7 @@
 @abstract
 class_name HitscanGun extends Gun
 
-@onready var ray_start := $useLocation # must be outside of player collision, only uses y and z
+@onready var ray_start := $useLocation ## must be outside of player collision, only uses y and z
 @onready var trail_start := $effectLocation
 
 @export var bullet_trail := preload("res://weapons/bullet_trail.tscn")
@@ -40,7 +40,7 @@ func show_trail():
 	$/root/Game.world.add_child(trail) # adds it to the world - not follow player
 
 func get_out(user):
-	if user is Player or user is Enemy:
+	if user is Player or user is Enemy: # always have holdLocations (hands)
 		ray_start.position.x = -user.get_node("holdLocation").position.x # undoes hold location offset
 	super(user)
 

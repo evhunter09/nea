@@ -40,7 +40,8 @@ func create_path(nodes: Array):
 		# curve needs a point before to use for initial direction
 		if i != 0:
 			var dir_vector = nodes[i-1].position.direction_to(n.position)
-			out_rad_vector = dir_vector * n.curve_rad  * 4/3*(2**0.5 - 1) # for most precise arc
+			# for most precise arc - only an approximation
+			out_rad_vector = dir_vector * n.curve_rad  * 4/3*(2**0.5 - 1)
 		
 		# for previous node's curve
 		if i != nodes.size() - 1: # last index one less than length
@@ -63,7 +64,6 @@ func _ready():
 
 func _get_current_node(progress: float):
 	for i in node_list.size():
-		#print(i)
 		node_list[i].highlighted = false
 		if progress <= node_list[i].cum_distance:
 			node_list[i-1].highlighted = true
@@ -72,18 +72,17 @@ func _get_current_node(progress: float):
 	TEMP = -1
 	return node_list[-1] # last
 
-
+## not needed for path now, might need to snap to points because of inaccuracy [br]
+## used for moving to (new) paths
 func get_pos_on_path(progress: float = 0.0):
-	# not needed for path now, might need to snap to points because of inaccuracy
-	# used for moving to (new) paths
 	return curve.sample_baked_with_rotation(progress, true)
 	
 func get_direction(progress: float):
 	var pos = get_pos_on_path(progress)
 	return pos.basis.get_euler()
 
+## Returns proportion of default change, to multiply by some value
 func get_progress_change(progress: float, offset: float) -> float:
-	# returns proportion of default change, to multiply by some value
 	var node = _get_current_node(progress)
 	if node.curve_rad > 0:
 		var radius = node.curve_rad * node.curve_dir # adds sign - minus = left
