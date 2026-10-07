@@ -26,9 +26,10 @@ var TEMP
 var offset_limit: float
 var aim_point: Vector2 ## Pixels
 var current_cover = null
+var peek_direction := 0 ## -1 for left, 0 for up (normal), 1 for right
+@export var _peek_angle := 0 ## only used for animating, exported to be able to
 
 enum Movement {WALK, RUN, JUMP, DUCK, IN_COVER, PEAK, SLIDE}
-
 var WS = Globals.WorldState
 
 
@@ -46,6 +47,14 @@ func leave_cover():
 		reset_movement()
 		current_cover = null
 
+func peak_corner(side: int):
+	$AnimationPlayer.play("peek" + str(side))
+	peek_direction = side
+
+func stop_peak():
+	$AnimationPlayer.play_backwards("peek" + str(peek_direction))
+	peek_direction = 0
+	
 func stick_to_cover(cover: Cover, direction):
 	#var dir = cover.basis.z # forward for cover is z (- for cover and player)
 	
@@ -98,7 +107,7 @@ func do_path_movement(delta):
 func limit_path_movement(inputs):
 	offset_limit = path.get_allowed_offset(_progress)
 	var direction = inputs
-	if movement == Movement.IN_COVER:
+	if movement == Movement.IN_COVER or movement == Movement.PEAK:
 		direction = stick_to_cover(current_cover, direction)
 	
 	if abs(_offset) > offset_limit:
@@ -112,25 +121,32 @@ func limit_path_movement(inputs):
 	return direction
 
 
+func animate():
+	rotation.z = deg_to_rad(_peek_angle)
+	camera_pivot.rotation.z = deg_to_rad( - _peek_angle) # undoes rotation to stay level
+
+
+
 func reset_movement():
 	visuals.mesh.height = DEFAULT_HEIGHT
 	collision.shape.height = DEFAULT_HEIGHT
 	move_speed = DEFAULT_MOVE_SPEED
 
 func _ready() -> void:
-	health = 5
-	inventory = {1: 15}
 	#camera_pivot.rotation.x = -PI / 2 + deg_to_rad(15) # DEBUG top down view - minusing default 15 rotation
+	health = 10
+	inventory = {1: 15}
 	reset_movement()
 	Globals.players.append(self)
-	print("this is game")
 	$holdLocation/pistol.get_out(self)
+	print("this is game")
 
 func _physics_process(delta):
 	if not is_on_floor():  # falling
 		velocity += get_gravity() * delta
 	elif Input.is_action_just_pressed("player1_jump"): # is on floor
 		velocity.y = JUMP
+		#movement = Movement.JUMP
 	elif Input.is_action_just_pressed("player1_duck"): # exclusive with jumping and falling
 		duck()
 	elif Input.is_action_pressed("player1_sprint"):
@@ -161,7 +177,9 @@ func _physics_process(delta):
 	velocity.z = new_velocity.z
 	
 	move_and_slide()
-	do_path_movement(delta) # from current frame, after physics applied
+	
+	animate()
+
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -169,3 +187,22 @@ func _input(event):
 	view_direction = camera.project_ray_normal(aim_point)
 	if event is InputEventMouseButton: if event.pressed:
 		$holdLocation/pistol.user_input(self)
+
+
+func is_invulnerable(from: Vector3):
+	if movement == Movement.IN_COVER and peek_direction == 0: # only can be if fully in cover
+		var to_enemy = from - position
+		print("Vec3 to enemy: ", to_enemy.normalized())
+		print("Cover vec3: ", -current_cover.basis.z)
+		return (-current_cover.basis.z.dot(to_enemy) > 0) # cover forward is -z (like player)
+	return false
+
+func on_hit(damage, by):
+	if by is Enemy:
+		if not is_invulnerable(by.position):
+			health = max(health - damage, 0)
+	super(damage, by)
+
+func die(by):
+	super(by)
+	print("\nPLAYER DEAD\n")

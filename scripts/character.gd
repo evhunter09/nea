@@ -11,7 +11,7 @@ var view_direction: Vector3
 enum State {ALIVE, DEAD}
 
 
-func on_hit(damage: int, by: Character):
+func on_hit(_damage: int, by: Character):
 	if health <= 0:
 		die(by)
 

@@ -622,3 +622,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.59183645, 2.5000002, 3.5783
 
 [node name="Enemy2" parent="." unique_id=1001796237 instance=ExtResource("6_58o0d")]
 transform = Transform3D(0.64278764, 0, -0.76604444, 0, 1, 0, 0.76604444, 0, 0.64278764, -10.208164, 2.5000002, 5.3783865)
+
+[editable path="layout/cover"]

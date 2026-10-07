@@ -15,7 +15,6 @@
 
 
 # TASKS
-3) ENEMIES
 4) AREA SYSTEM (is in combat)
 5) EXAMPLE MAP WITH PATH
 
@@ -25,5 +24,5 @@
 - use getcurrentnode and each pathNode to run specific functions - use variable to function -> not work multiplayer without passing player to all path functions
 
 ### TO REMEMBER (warnings)
-- dont have curve in 1 axis -> curve in another - leave a straight like if on same axis
+- dont have curve in 1 axis into curve in another - leave a straight like if on same axis
 - gun anims affect useLocation - bad if use it inbetween shots, add separate node3d for anim?
