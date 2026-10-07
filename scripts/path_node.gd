@@ -21,6 +21,6 @@ func _ready():
 
 func _process(_delta):
 	if highlighted:
-		$debug.mesh.material.albedo_color = Color(0, 1.0, 0.13, 0.50)
+		$debug.mesh.material.albedo_color = Color(0, 1.0, 0.13, 0.33)
 	else:
-		$debug.mesh.material.albedo_color = def_colour
+		if not Engine.is_editor_hint():$debug.mesh.material.albedo_color = def_colour
