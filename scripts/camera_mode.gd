@@ -1,21 +1,25 @@
 extends SpringArm3D
 
-signal enter_firstperson
-signal enter_thirdperson
 
 @export var firstperson_offset := Vector3()
 @export var firstperson_rotation := Vector3()
-var thirdperson_length := spring_length      # edit in (3d) editor
-var thirdperson_transform := transform
+@export var anim_duration := 0.75 ## seconds
+var thirdperson_length := spring_length  # edit in (3d) editor
+var thirdperson_offset := position
+var thirdperson_rotation := rotation
 
 func on_entered_firstperson():
-	spring_length = 0
-	position = firstperson_offset
-	rotation = firstperson_rotation
+	var anim = create_tween().set_trans(Tween.TRANS_QUAD).set_parallel() # all happen at same time
+	anim.tween_property(self, "spring_length", 0, anim_duration)
+	anim.tween_property(self, "position", firstperson_offset, anim_duration)
+	anim.tween_property(self, "rotation", firstperson_rotation, anim_duration)
 
 func on_entered_thirdperson():
-	spring_length = thirdperson_length
-	transform = thirdperson_transform
+	var anim = create_tween().set_trans(Tween.TRANS_QUAD).set_parallel()
+	anim.tween_property(self, "spring_length", thirdperson_length, anim_duration)
+	anim.tween_property(self, "position", thirdperson_offset, anim_duration)
+	anim.tween_property(self, "rotation", thirdperson_rotation, anim_duration)
 
 func _ready():
-	enter_firstperson.emit()
+	pass
+	#enter_firstperson.emit() # to debug in firstperson immediately

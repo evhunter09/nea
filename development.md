@@ -15,13 +15,13 @@
 
 
 # TASKS
-4) AREA SYSTEM (is in combat)
-5) EXAMPLE MAP WITH PATH
+5) EXTRA WEAPON - AND PICKUP (from ground)
+6) EXAMPLE MAP WITH PATH
 
 ### FUTURE DEV
-- path: add current attrib (and id) - allow multiple
+- path: add current (and id) attrib - allow multiple
 - zones: area3d with trigger - next level preload, allow custom effects inc changing / disabling path
-- use getcurrentnode and each pathNode to run specific functions - use variable to function -> not work multiplayer without passing player to all path functions
+- use getcurrentnode and each pathNode to run specific functions - use variable to function -> not work multiplayer without passing player to most path functions
 
 ### TO REMEMBER (warnings)
 - dont have curve in 1 axis into curve in another - leave a straight like if on same axis

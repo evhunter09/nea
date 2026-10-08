@@ -1,8 +1,9 @@
 class_name Player extends Character
 @onready var camera_pivot := $pivot
+@onready var camera_offset := camera_pivot.get_node("SpringArm3D")
+@onready var camera := camera_offset.get_node("Camera3D")
 @onready var collision := $CollisionShape3D
 @onready var visuals := $MeshInstance3D
-@onready var camera := $pivot/SpringArm3D/Camera3D
 @onready var path := $"../world/path" # constant reference hopefully, cant use global variable yet
 
 @export var DEFAULT_MOVE_SPEED := 5.0
@@ -192,8 +193,6 @@ func _input(event):
 func is_invulnerable(from: Vector3):
 	if movement == Movement.IN_COVER and peek_direction == 0: # only can be if fully in cover
 		var to_enemy = from - position
-		print("Vec3 to enemy: ", to_enemy.normalized())
-		print("Cover vec3: ", -current_cover.basis.z)
 		return (-current_cover.basis.z.dot(to_enemy) > 0) # cover forward is -z (like player)
 	return false
 
