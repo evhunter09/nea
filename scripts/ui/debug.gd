@@ -15,6 +15,8 @@ func _physics_process(_delta) -> void:
 	"\n change_multi "+ str(player.TEMP) +\
 	"\n _offset "+ str(player._offset) +\
 	"\n offset_limit "+ str(player.offset_limit) +\
-	"\n PATH:" +\
-	"\n distance "+ str(path._distance) +\
-	"\n node "+ str(path.TEMP)
+#	"\n PATH:" +\
+#	"\n distance "+ str(path._distance) +\
+#	"\n node "+ str(path.TEMP)
+	"\n World:" +\
+	"\n world_state "+ str(Globals.world_state)

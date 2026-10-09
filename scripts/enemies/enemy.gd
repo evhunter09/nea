@@ -4,7 +4,7 @@ class_name Enemy extends Character
 @onready var weapon: Weapon = $holdLocation/weapon
 
 @export var view_distance := 10 ## Units
-@export var turn_speed := deg_to_rad(2) ## Degrees per frame
+@export var turn_speed := deg_to_rad(1) ## Degrees per frame
 @export var accuracy := 0.02 ## in both direction, when shooting
 @export var points_value := 100
 

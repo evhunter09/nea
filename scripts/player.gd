@@ -49,12 +49,14 @@ func leave_cover():
 		current_cover = null
 
 func peak_corner(side: int):
-	$AnimationPlayer.play("peek" + str(side))
-	peek_direction = side
+	if Globals.world_state == WS.COMBAT:         # prevent anim playing if clipping covers
+		$AnimationPlayer.play("peek" + str(side))
+		peek_direction = side
 
 func stop_peak():
-	$AnimationPlayer.play_backwards("peek" + str(peek_direction))
-	peek_direction = 0
+	if Globals.world_state == WS.COMBAT:
+		$AnimationPlayer.play_backwards("peek" + str(peek_direction))
+		peek_direction = 0
 	
 func stick_to_cover(cover: Cover, direction):
 	#var dir = cover.basis.z # forward for cover is z (- for cover and player)
@@ -87,13 +89,15 @@ func duck():
 			movement = Movement.DUCK
 			enter_crouch()
 
-func run():
-	if Globals.world_state == WS.MOVING:
-		movement = Movement.WALK
-		move_speed = DEFAULT_MOVE_SPEED
+func run(inputted: bool):
+	if (Globals.world_state == WS.MOVING) == inputted: # xnor - inputted toggles result
+		if movement != Movement.DUCK: # allows player to hold key to walk, while ducking
+			movement = Movement.WALK
+			reset_movement()
 	else:
 		movement = Movement.RUN
-		move_speed = DEFAULT_MOVE_SPEED * SPRINT_MULTI
+		reset_movement()
+		move_speed *= SPRINT_MULTI
 
 
 func calc_value_offset(axis, delta):
@@ -150,12 +154,11 @@ func _physics_process(delta):
 		#movement = Movement.JUMP
 	elif Input.is_action_just_pressed("player1_duck"): # exclusive with jumping and falling
 		duck()
-	elif Input.is_action_pressed("player1_sprint"):
-		run()
+	elif Input.is_action_pressed("player1_sprint"): # runs (constantly) while holding
+		run(true)
 	else:
-		if movement == Movement.RUN: # resets to default speed ONLY if was sprinting
-			movement = Movement.WALK
-			reset_movement()
+		if movement == Movement.WALK or movement == Movement.RUN: # resets to default speed ONLY if moving 'normally'
+			run(false)
 	
 	var rel_velocity
 	var in_dir = Input.get_vector("player1_move_left", "player1_move_right",
