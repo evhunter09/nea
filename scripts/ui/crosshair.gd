@@ -1,5 +1,4 @@
 extends TextureRect
-
 @onready var current_player = $".." # parent node
 
 func _ready():

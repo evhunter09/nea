@@ -1,6 +1,5 @@
 extends SpringArm3D
 
-
 @export var firstperson_offset := Vector3()
 @export var firstperson_rotation := Vector3()
 @export var anim_duration := 0.75 ## seconds

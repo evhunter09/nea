@@ -9,10 +9,11 @@ class_name Player extends Character
 @export var DEFAULT_MOVE_SPEED := 5.0
 @export var SPRINT_MULTI := 1.4
 @export var JUMP := 3.0     ## Velocity at instant when jumping
-@export var FRICTION := 3.0 ## Deceleration when not moving (per frame)
-@export var SENSITIVITY: float
+@export var FRICTION := 2.0 ## Deceleration when not moving (per frame)
+@export var SLIDE_FRICTION := 0.1
 
 @export var CROUCH_HEIGHT_MULTI := 0.8
+@export var SLIDE_HEIGHT_MULTI := 0.5
 @onready var DEFAULT_HEIGHT = collision.shape.height
 
 @export_group("Game state")
@@ -21,6 +22,7 @@ class_name Player extends Character
 @export var movement: Movement
 var points: int
 var move_speed: float
+var current_friction: float = FRICTION
 var _offset := 0.0   ## Units from path
 var _progress := 0.0 ## Units from path
 var TEMP
@@ -28,7 +30,8 @@ var offset_limit: float
 var aim_point: Vector2 ## Pixels
 var current_cover = null
 var peek_direction := 0 ## -1 for left, 0 for up (normal), 1 for right
-@export var _peek_angle := 0 ## only used for animating, exported to be able to
+## only used for animating, exported to be able to
+@export_custom(PROPERTY_HINT_NONE, "", PROPERTY_USAGE_EDITOR) var _peek_angle := 0
 
 enum Movement {WALK, RUN, JUMP, DUCK, IN_COVER, PEAK, SLIDE}
 var WS = Globals.WorldState
@@ -67,6 +70,13 @@ func stick_to_cover(cover: Cover, direction):
 	return Vector2(dir.x, dir.z)
 
 
+func slide():
+	print("slide (TODO)")
+	movement = Movement.SLIDE
+	current_friction = SLIDE_FRICTION
+	visuals.mesh.height = DEFAULT_HEIGHT * SLIDE_HEIGHT_MULTI
+	collision.shape.height = DEFAULT_HEIGHT * SLIDE_HEIGHT_MULTI
+
 func enter_crouch():
 	visuals.mesh.height = DEFAULT_HEIGHT * CROUCH_HEIGHT_MULTI
 	collision.shape.height = DEFAULT_HEIGHT * CROUCH_HEIGHT_MULTI
@@ -84,7 +94,10 @@ func duck():
 			movement = Movement.WALK
 			reset_movement()  # default
 		Movement.RUN: # to slide
-			print("slide (TODO)")
+			slide()
+		Movement.SLIDE:
+			movement = Movement.WALK
+			reset_movement()  # default
 		_:
 			movement = Movement.DUCK
 			enter_crouch()
@@ -95,9 +108,10 @@ func run(inputted: bool):
 			movement = Movement.WALK
 			reset_movement()
 	else:
-		movement = Movement.RUN
-		reset_movement()
-		move_speed *= SPRINT_MULTI
+		if movement != Movement.SLIDE: # player needs to be running to slide
+			movement = Movement.RUN
+			reset_movement()
+			move_speed *= SPRINT_MULTI
 
 
 func calc_value_offset(axis, delta):
@@ -136,6 +150,7 @@ func reset_movement():
 	visuals.mesh.height = DEFAULT_HEIGHT
 	collision.shape.height = DEFAULT_HEIGHT
 	move_speed = DEFAULT_MOVE_SPEED
+	current_friction = FRICTION
 
 func _ready() -> void:
 	#camera_pivot.rotation.x = -PI / 2 + deg_to_rad(15) # DEBUG top down view - minusing default 15 rotation
@@ -151,13 +166,13 @@ func _physics_process(delta):
 		velocity += get_gravity() * delta
 	elif Input.is_action_just_pressed("player1_jump"): # is on floor
 		velocity.y = JUMP
-		#movement = Movement.JUMP
 	elif Input.is_action_just_pressed("player1_duck"): # exclusive with jumping and falling
 		duck()
 	elif Input.is_action_pressed("player1_sprint"): # runs (constantly) while holding
 		run(true)
 	else:
-		if movement == Movement.WALK or movement == Movement.RUN: # resets to default speed ONLY if moving 'normally'
+		if movement in [Movement.WALK, Movement.RUN, Movement.SLIDE]:
+			# resets to default speed ONLY if moving 'normally' or if sliding without running
 			run(false)
 	
 	var rel_velocity
@@ -168,8 +183,8 @@ func _physics_process(delta):
 		rel_velocity = in_dir * move_speed
 	else:
 		rel_velocity = global_basis.inverse() * get_real_velocity() # get relative velocity
-		rel_velocity.x = move_toward(rel_velocity.x, 0, FRICTION)  # slowing down
-		rel_velocity.y = move_toward(rel_velocity.z, 0, FRICTION)
+		rel_velocity.x = move_toward(rel_velocity.x, 0, current_friction)  # slowing down
+		rel_velocity.y = move_toward(rel_velocity.z, 0, current_friction)
 	
 	var turn_dir = path.get_direction(_progress).y # update after calc relative velocity of last frame
 	var next_progress = _progress + -rel_velocity.y * delta * path.get_progress_change(_progress, _offset)
@@ -181,6 +196,7 @@ func _physics_process(delta):
 	velocity.z = new_velocity.z
 	
 	move_and_slide()
+	do_path_movement(delta) # from current frame, after physics applied
 	
 	animate()
 

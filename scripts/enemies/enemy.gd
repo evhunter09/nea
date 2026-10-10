@@ -1,5 +1,4 @@
 class_name Enemy extends Character
-
 @onready var player: Player = Globals.players[0]
 @onready var weapon: Weapon = $holdLocation/weapon
 
