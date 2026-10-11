@@ -10,10 +10,11 @@ class_name Player extends Character
 @export var SPRINT_MULTI := 1.4
 @export var JUMP := 3.0     ## Velocity at instant when jumping
 @export var FRICTION := 2.0 ## Deceleration when not moving (per frame)
-@export var SLIDE_FRICTION := 0.1
+@export var SLIDE_FRICTION := 0.05
+@export var SLIDE_MIN_SPEED := 2.0
 
 @export var CROUCH_HEIGHT_MULTI := 0.8
-@export var SLIDE_HEIGHT_MULTI := 0.5
+@export var SLIDE_HEIGHT_MULTI := 0.6 # height needs to be above 1.1 or else the cylinder will thinnen
 @onready var DEFAULT_HEIGHT = collision.shape.height
 
 @export_group("Game state")
@@ -71,7 +72,6 @@ func stick_to_cover(cover: Cover, direction):
 
 
 func slide():
-	print("slide (TODO)")
 	movement = Movement.SLIDE
 	current_friction = SLIDE_FRICTION
 	visuals.mesh.height = DEFAULT_HEIGHT * SLIDE_HEIGHT_MULTI
@@ -174,11 +174,15 @@ func _physics_process(delta):
 		if movement in [Movement.WALK, Movement.RUN, Movement.SLIDE]:
 			# resets to default speed ONLY if moving 'normally' or if sliding without running
 			run(false)
+			
+	if movement == Movement.SLIDE and velocity.length() < SLIDE_MIN_SPEED:
+			print("exit slide")
+			duck() # same as manually cancelling slide
 	
 	var rel_velocity
 	var in_dir = Input.get_vector("player1_move_left", "player1_move_right",
 									"player1_move_for", "player1_move_back")
-	if in_dir: # a key is down 
+	if in_dir and movement != Movement.SLIDE: # a key is down, and can control movement
 		in_dir = limit_path_movement(in_dir)
 		rel_velocity = in_dir * move_speed
 	else:

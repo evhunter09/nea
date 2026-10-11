@@ -45,10 +45,16 @@ size = Vector3(2, 1.25, 2)
 size = Vector3(2, 1.25, 2)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_c7s6e"]
-size = Vector2(3.5, 6)
+size = Vector2(3.5, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wijl4"]
-size = Vector3(3.6, 1, 6)
+size = Vector3(3.6, 0.2, 4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rhiq3"]
+size = Vector2(4.9, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w6oos"]
+size = Vector3(5, 0.2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8fwg"]
 cull_mode = 2
@@ -420,16 +426,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 mesh = SubResource("BoxMesh_iw27f")
 
 [node name="ramp" type="StaticBody3D" parent="layout" unique_id=2048751075]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.5, -4)
 collision_layer = 3
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="layout/ramp" unique_id=1588128539]
-transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, -1.76, -0.73, -2.75)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="layout/ramp" unique_id=1588128539]
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 1.238, -1.238, 0)
 mesh = SubResource("PlaneMesh_c7s6e")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="layout/ramp" unique_id=2041238113]
-transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, -2.075, -1.12, -2.75)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="layout/ramp" unique_id=2041238113]
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 1.202, -1.343, 0)
 shape = SubResource("BoxShape3D_wijl4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="layout/ramp" unique_id=1260520676]
+transform = Transform3D(0.8660253, 0.49999997, 0, -0.49999997, 0.8660253, 0, 0, 0, 1, 2.1212177, -1.2249999, 3)
+mesh = SubResource("PlaneMesh_rhiq3")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="layout/ramp" unique_id=521957028]
+transform = Transform3D(0.8660253, 0.49999997, 0, -0.49999997, 0.8660253, 0, 0, 0, 1, 2.1152182, -1.337, 3)
+shape = SubResource("BoxShape3D_w6oos")
 
 [node name="wall" type="StaticBody3D" parent="layout" unique_id=583020045]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0000005, 1, -9)
