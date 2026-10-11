@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://h3455rw6tv2f"]
+
+[ext_resource type="Script" uid="uid://dl58bido1eurx" path="res://scripts/world/area.gd" id="1_r8yk2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ro41k"]
+
+[sub_resource type="Animation" id="Animation_r8yk2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("itemMesh:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gwsdp"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("itemMesh")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0.25, 0, 1, 1, 0, 0.45, 0, 2, 1, 0, 0.25, 0)
+
+[sub_resource type="Animation" id="Animation_5ramm"]
+resource_name = "pickup"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("itemMesh:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lkx35"]
+_data = {
+&"RESET": SubResource("Animation_r8yk2"),
+&"idle": SubResource("Animation_gwsdp"),
+&"pickup": SubResource("Animation_5ramm")
+}
+
+[node name="pickup" type="Area3D" unique_id=616554234]
+collision_mask = 8
+script = ExtResource("1_r8yk2")
+type = 1
+action = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=591363742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ro41k")
+
+[node name="itemMesh" type="MeshInstance3D" parent="." unique_id=2021888066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=82216616]
+libraries/ = SubResource("AnimationLibrary_lkx35")
+autoplay = &"idle"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

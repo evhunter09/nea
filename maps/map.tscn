@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://b0hdc7jmncqjq" path="res://maps/path_node.tscn" id="3_e0an3"]
 [ext_resource type="Script" uid="uid://dl58bido1eurx" path="res://scripts/world/area.gd" id="3_fgnob"]
 [ext_resource type="Script" uid="uid://cyxcn5g7itnm3" path="res://player_indicator.gd" id="4_p5exx"]
+[ext_resource type="PackedScene" uid="uid://h3455rw6tv2f" path="res://maps/pickup.tscn" id="4_w6oos"]
+[ext_resource type="Texture2D" uid="uid://b2qiy6q2edmtc" path="res://assets/textures/plus.png" id="5_lsoi8"]
 [ext_resource type="PackedScene" uid="uid://bt47mvfgelm3e" path="res://enemies/enemy.tscn" id="6_58o0d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e6lj2"]
@@ -81,6 +83,14 @@ size = Vector3(0.5, 0.3, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lqxt6"]
 size = Vector3(3, 2, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d06hr"]
+albedo_texture = ExtResource("5_lsoi8")
+uv1_offset = Vector3(-0.08, 0.45, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ro41k"]
+material = SubResource("StandardMaterial3D_d06hr")
+size = Vector3(0.75, 0.5, 0.75)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_e6lj2"]
 
@@ -548,7 +558,6 @@ transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.70710
 
 [node name="areas" type="Node3D" parent="layout" unique_id=2018412214]
 editor_description = "Holds all areas, for organisation"
-transform = Transform3D(0.9999999, 0, 0, 0, 1, 0, 0, 0, 0.9999999, 0, 0, 0)
 
 [node name="CombatArea" type="Area3D" parent="layout/areas" unique_id=1688245820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, -1)
@@ -558,6 +567,14 @@ script = ExtResource("3_fgnob")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="layout/areas/CombatArea" unique_id=164410583]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
 shape = SubResource("BoxShape3D_lqxt6")
+
+[node name="collectables" type="Node3D" parent="layout" unique_id=1753244689]
+
+[node name="pickup" parent="layout/collectables" unique_id=616554234 instance=ExtResource("4_w6oos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 0)
+
+[node name="itemMesh" parent="layout/collectables/pickup" index="1" unique_id=2021888066]
+mesh = SubResource("BoxMesh_ro41k")
 
 [node name="boundary" type="StaticBody3D" parent="." unique_id=1886927942]
 
@@ -656,3 +673,5 @@ transform = Transform3D(0.64278764, 0, -0.76604444, 0, 1, 0, 0.76604444, 0, 0.64
 
 
 [connection signal="body_entered" from="layout/areas/CombatArea" to="layout/areas/CombatArea" method="_on_body_entered"]
+
+[editable path="layout/collectables/pickup"]
