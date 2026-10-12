@@ -19,6 +19,7 @@ class_name Player extends Character
 
 @export_group("Game state")
 @export var lives: int
+@export var max_health := 10
 @export var holding: Array[Weapon] = []
 @export var movement: Movement
 var points: int
@@ -26,8 +27,6 @@ var move_speed: float
 var current_friction: float = FRICTION
 var _offset := 0.0   ## Units from path
 var _progress := 0.0 ## Units from path
-var TEMP
-var offset_limit: float
 var aim_point: Vector2 ## Pixels
 var current_cover = null
 var peek_direction := 0 ## -1 for left, 0 for up (normal), 1 for right
@@ -120,11 +119,10 @@ func calc_value_offset(axis, delta):
 func do_path_movement(delta):
 	_offset += calc_value_offset(Vector3.AXIS_X, delta)
 	var change_mult = path.get_progress_change(_progress, _offset)
-	TEMP = change_mult
 	_progress += -calc_value_offset(Vector3.AXIS_Z, delta) * change_mult # forward is minus z
 
 func limit_path_movement(inputs):
-	offset_limit = path.get_allowed_offset(_progress)
+	var offset_limit = path.get_allowed_offset(_progress)
 	var direction = inputs
 	if movement == Movement.IN_COVER or movement == Movement.PEAK:
 		direction = stick_to_cover(current_cover, direction)
@@ -228,3 +226,7 @@ func on_hit(damage, by):
 func die(by):
 	super(by)
 	print("\nPLAYER DEAD\n")
+
+func pickup(amount): # health by default
+	health = min(health + amount, max_health) # could remove check for certain pickups
+	print("Health gain: ", amount)

@@ -572,6 +572,8 @@ shape = SubResource("BoxShape3D_lqxt6")
 
 [node name="pickup" parent="layout/collectables" unique_id=616554234 instance=ExtResource("4_w6oos")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 0)
+type = 2
+value = 5
 
 [node name="itemMesh" parent="layout/collectables/pickup" index="1" unique_id=2021888066]
 mesh = SubResource("BoxMesh_ro41k")
