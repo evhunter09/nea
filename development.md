@@ -1,6 +1,5 @@
 ## TODO
 - sprint feedback (camera)
-- slide
 - crouch slowdown (decide)
 
 ## BUGS 

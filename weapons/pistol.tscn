@@ -18,20 +18,13 @@ radius = 0.05
 
 [sub_resource type="Animation" id="Animation_f30ot"]
 length = 0.001
-tracks/0/type = "position_3d"
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 2
+tracks/0/path = NodePath(".:reloading")
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:reloading")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -44,17 +37,17 @@ length = 0.8
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("physics")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.5, 0.2, 0.46666667, 1, 0, 0.05, 0, 0.6, 1, 0, 0, 0, 0.8, 1, 0, 0, 0)
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.5, 0.2, 0.46666664, 1, 0, 0.05, 0, 0.6000001, 1, 0, 0, 0, 0.8, 1, 0, 0, 0)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("physics")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.707107, 0, 0, 0.707107, 0.46666667, 1, 0.087156, 0, 0, 0.996195, 0.6, 1, 0, 0, 0, 1, 0.8, 1, 0, 0, 0, 1)
+tracks/1/keys = PackedFloat32Array(0, 1, -0.707107, 0, 0, 0.707107, 0.46666667, 1, 0.087156, 0, 0, 0.996195, 0.5916667, 1, 0, 0, 0, 1, 0.8, 1, 0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_fcwqf"]
 resource_name = "fire"
@@ -62,14 +55,14 @@ length = 0.2
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("physics")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.033333335, 1, 0, 0, 0.05, 0.13333334, 1, 0, 0, -0.01, 0.2, 1, 0, 0, 0)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("physics")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, 0.069756, 0, 0, 0.997564, 0.13333334, 1, -0.026177, 0, 0, 0.999657, 0.16666667, 1, 0, 0, 0, 1)
@@ -80,14 +73,14 @@ length = 0.95
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("physics")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.16666667, 1, 0.05, 0.03, -0.03, 0.33333334, 1, 0.06, 0.03, -0.02, 0.56666666, 1, 0.05, 0.03, 0, 0.6333333, 1, 0.05, 0.03, 0, 0.8333333, 1, 0, 0, 0)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("physics")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.16666667, 1, 0.085832, 0.015134, -0.172987, 0.98106, 0.33333334, 1, 0.085832, 0.015134, -0.172987, 0.98106, 0.56666666, 1, 0.127432, 0.028251, -0.214588, 0.967944, 0.6666667, 1, 0.127432, 0.028251, -0.214588, 0.967944, 0.8333333, 1, 0, 0, 0, 1, 0.93333334, 1, 0, 0, 0, 1)
@@ -110,14 +103,14 @@ length = 0.1
 tracks/0/type = "position_3d"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".")
+tracks/0/path = NodePath("physics")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.033333335, 1, 0, 0, 0.005, 0.06666667, 1, 0, 0, 0)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("physics")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, -0.008727, 0, 0, 0.999962, 0.1, 1, 0, 0, 0, 1)
@@ -134,13 +127,22 @@ _data = {
 [node name="pistol" unique_id=1043645253 instance=ExtResource("1_1ohd4")]
 script = ExtResource("2_5icxk")
 
-[node name="mesh" parent="." index="0" unique_id=519396765]
+[node name="physics" parent="." index="0" unique_id=1793602956]
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="mesh" parent="physics" index="0" unique_id=519396765]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.15)
 mesh = SubResource("CylinderMesh_r5483")
 
-[node name="CollisionShape3D" parent="physics" parent_id_path=PackedInt32Array(1793602956) index="0" unique_id=1631808763]
+[node name="CollisionShape3D" parent="physics" index="1" unique_id=1631808763]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.15)
 shape = SubResource("CylinderShape3D_5icxk")
 
-[node name="AnimationPlayer" parent="." index="4" unique_id=1930136047]
+[node name="pickupArea" parent="." index="1" unique_id=1071034132]
+collision_mask = 8
+
+[node name="AnimationPlayer" parent="." index="2" unique_id=1930136047]
 libraries/ = SubResource("AnimationLibrary_f30ot")
+
+[connection signal="body_entered" from="pickupArea" to="." method="pick_up"]

@@ -156,6 +156,7 @@ func _ready() -> void:
 	inventory = {1: 15}
 	reset_movement()
 	Globals.players.append(self)
+	$holdLocation/pistol.pick_up(self)
 	$holdLocation/pistol.get_out(self)
 	print("this is game")
 

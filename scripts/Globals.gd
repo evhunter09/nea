@@ -1,7 +1,7 @@
 extends Node
 
-@export  var game_state:State = State.IN_GAME
-@export  var world_state:WorldState = WorldState.MOVING
+@export var game_state:State = State.IN_GAME
+@export var world_state:WorldState = WorldState.MOVING
 @export var level = null
 @export var difficulty:Difficulty
 @export_flags("Headshots only", "Weapons limited", "Melee only", "No cover", "Timed")
@@ -22,3 +22,8 @@ enum Modifiers {HEADSHOT_ONLY = 1, # powers of 2 for bitmasks
 				NO_COVER      = 8,
 				TIMED         = 16,
 }
+
+
+func contains_type(array: Array, type) -> bool:
+	## checks if any items in array are same type as the type passed
+	return array.any(func(i): return i.get_script() == type)

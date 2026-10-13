@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://h3455rw6tv2f" path="res://maps/pickup.tscn" id="4_w6oos"]
 [ext_resource type="Texture2D" uid="uid://b2qiy6q2edmtc" path="res://assets/textures/plus.png" id="5_lsoi8"]
 [ext_resource type="PackedScene" uid="uid://bt47mvfgelm3e" path="res://enemies/enemy.tscn" id="6_58o0d"]
+[ext_resource type="PackedScene" uid="uid://caqh0ia4poe0q" path="res://weapons/pistol.tscn" id="6_hnoar"]
+[ext_resource type="Script" uid="uid://dmnd3wwb3k5bc" path="res://scripts/weapons/p90.gd" id="7_1rpe1"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e6lj2"]
 size = Vector3(30, 2.5, 12)
@@ -577,6 +579,13 @@ value = 5
 
 [node name="itemMesh" parent="layout/collectables/pickup" index="1" unique_id=2021888066]
 mesh = SubResource("BoxMesh_ro41k")
+
+[node name="pistol" parent="layout/collectables" unique_id=1043645253 instance=ExtResource("6_hnoar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 4)
+
+[node name="p90" parent="layout/collectables" unique_id=654043901 instance=ExtResource("6_hnoar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 5.5)
+script = ExtResource("7_1rpe1")
 
 [node name="boundary" type="StaticBody3D" parent="." unique_id=1886927942]
 
