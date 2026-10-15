@@ -14,13 +14,16 @@
 
 
 # TASKS
-5) EXTRA WEAPON - AND PICKUP (from ground)
 6) EXAMPLE MAP WITH PATH
 
 ### FUTURE DEV
 - path: add current (and id) attrib - allow multiple
 - zones: area3d with trigger - next level preload, allow custom effects inc changing / disabling path
 - use getcurrentnode and each pathNode to run specific functions - use variable to function -> not work multiplayer without passing player to most path functions
+
+### COSMETICS
+- start put away animation based on progress of equip animation - prevent jumping to top
+- disable physics for weapon once hit ground - stop it rolling away from pickup area
 
 ### TO REMEMBER (warnings)
 - dont have curve in 1 axis into curve in another - leave a straight like if on same axis

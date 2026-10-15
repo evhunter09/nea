@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d11m3qtjbw5p" path="res://scripts/enemies/enemy.gd" id="1_fw1ev"]
 [ext_resource type="Texture2D" uid="uid://cyy4rpai2cifw" path="res://assets/characters/Javier Bardem.png" id="2_7frlh"]
-[ext_resource type="PackedScene" uid="uid://caqh0ia4poe0q" path="res://weapons/pistol.tscn" id="3_orwns"]
+[ext_resource type="PackedScene" uid="uid://2iw5q4iippfu" path="res://weapons/pistol.tscn" id="3_orwns"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ro41k"]
 radius = 0.6

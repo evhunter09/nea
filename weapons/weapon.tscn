@@ -9,6 +9,7 @@
 [node name="Weapon" type="Node3D" unique_id=1043645253]
 
 [node name="physics" type="RigidBody3D" parent="." unique_id=1793602956]
+process_mode = 4
 
 [node name="mesh" type="MeshInstance3D" parent="physics" unique_id=519396765]
 mesh = SubResource("PlaceholderMesh_tsf64")
@@ -23,6 +24,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.3)
 gizmo_extents = 0.2
 
 [node name="pickupArea" type="Area3D" parent="." unique_id=1071034132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.15)
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="pickupArea" unique_id=639637281]
 shape = SubResource("SphereShape3D_ro41k")

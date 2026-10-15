@@ -22,7 +22,7 @@ func fire(user):
 
 func reload(user):
 	reloading = true
-	anim_player.play("reload")
+	anim_player.play("reload") # must have reload=false keyframe at end
 	next_use = Time.get_ticks_msec() + reload_duration
 	
 	# either how much player has left, or how much more to fill up max_ammo

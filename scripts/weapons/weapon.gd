@@ -22,6 +22,7 @@ func use(user: Character):
 	anim_player.play("use") # anim for just clicking
 
 func get_out(user: Character):
+	position = Vector3.ZERO # removes previous position from when in world
 	next_use = Time.get_ticks_msec() + equip_time
 	anim_player.play("equip")
 	$physics.process_mode = Node.PROCESS_MODE_DISABLED # stops it from falling while in use
@@ -36,10 +37,16 @@ func pick_up(player: Player):
 			player.holding[location] = self
 		else:
 			player.holding.append(self)
-		print("PICKUP")
+		remove_from_world()
+
+func put_away():
+	anim_player.play("put away") # must have get_parent().remove_child method at end
 
 func enter_world():
-	reparent($/Game.world) # should stay at same position
-	#anim_player.stop() # TEST
+	reparent($/root/Game.world) # should stay at same position
+	#anim_player.stop() # TEST - could play fall animation?
 	$physics.process_mode = Node.PROCESS_MODE_INHERIT
 	$pickupArea.process_mode = Node.PROCESS_MODE_INHERIT
+
+func remove_from_world():
+	get_parent().call_deferred("remove_child", self) # prevents godot complaining

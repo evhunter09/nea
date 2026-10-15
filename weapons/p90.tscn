@@ -1,0 +1,168 @@
+[gd_scene format=3 uid="uid://dv2lblsq8hhdb"]
+
+[ext_resource type="PackedScene" uid="uid://hs82iasy87iq" path="res://weapons/weapon.tscn" id="1_7jyen"]
+[ext_resource type="Script" uid="uid://dmnd3wwb3k5bc" path="res://scripts/weapons/p90.gd" id="2_evj2s"]
+[ext_resource type="ArrayMesh" uid="uid://cdcdayuh5mfhw" path="res://assets/models/p90_submachine_gun_low_poly_game_ready_3d_model.glb" id="2_x8ek1"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hwerb"]
+height = 0.7
+radius = 0.1
+
+[sub_resource type="Animation" id="Animation_x8ek1"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_arhst"]
+resource_name = "equip"
+length = 0.8
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.5, 0.2, 0.46666664, 1, 0, 0.05, 0, 0.6000001, 1, 0, 0, 0, 0.8, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.707107, 0, 0, 0.707107, 0.46666667, 1, 0.087156, 0, 0, 0.996195, 0.5916667, 1, -0.026177, 0, 0, 0.999657, 0.8, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_evj2s"]
+resource_name = "fire"
+length = 0.15
+step = 0.016666668
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.033333335, 1, 0, 0, 0.05, 0.1, 1, 0, 0, -0.01, 0.13333334, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, 0.043619, 0, 0, 0.999048, 0.06666667, 1, -0.017452406, 0, 0, 0.9998477, 0.1, 1, 0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ew33p"]
+resource_name = "put away"
+length = 0.5
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.16666667, 1, 0, -0.2, 0.05, 0.5, 1, 0, -0.5, 0.2)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.16666667, 1, -0.258819, 0, 0, 0.965926, 0.5, 1, -0.707107, 0, 0, 0.707107)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove_from_world"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_obr0e"]
+resource_name = "reload"
+length = 1.15
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.2, 1, -0.04, -0.15, 0.02, 0.36666667, 1, -0.05, -0.15, 0.02, 0.56666666, 1, -0.03, -0.11, -0.09, 0.6666667, 1, -0.03, -0.11, -0.09, 0.7, 1, -0.03, -0.08, -0.05, 0.8666667, 1, -0.03, -0.07, 0.03, 1.0666667, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.06666667, 1, 0, 0, 0, 1, 0.2, 1, 0.018947, -0.0341, -0.042978, 0.998314, 0.4, 1, 0.018947, -0.0341, -0.042978, 0.998314, 0.56666666, 1, -0.017436, 0.000761, 0.043613, 0.998896, 0.6666667, 1, -0.026152, 0.001142, 0.043604, 0.998706, 0.7, 1, 0, 0, 0.069756, 0.997564, 0.8666667, 1, 0.008655, -0.002845, 0.026199, 0.999615, 1.0333333, 1, 0, 0, 0, 1, 1.1, 1, 0, 0, 0, 1)
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:reloading")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.1333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4vqbg"]
+resource_name = "use"
+length = 0.1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.033333335, 1, 0, 0, 0.005, 0.06666667, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.033333335, 1, -0.008727, 0, 0, 0.999962, 0.1, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_arhst"]
+_data = {
+&"RESET": SubResource("Animation_x8ek1"),
+&"equip": SubResource("Animation_arhst"),
+&"fire": SubResource("Animation_evj2s"),
+&"put away": SubResource("Animation_ew33p"),
+&"reload": SubResource("Animation_obr0e"),
+&"use": SubResource("Animation_4vqbg")
+}
+
+[node name="p90" unique_id=1043645253 instance=ExtResource("1_7jyen")]
+script = ExtResource("2_evj2s")
+
+[node name="mesh" parent="physics" parent_id_path=PackedInt32Array(1793602956) index="0" unique_id=519396765]
+transform = Transform3D(-3.4969112e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.4969112e-08, 0, 0, -0.099999994)
+mesh = ExtResource("2_x8ek1")
+
+[node name="CollisionShape3D" parent="physics" parent_id_path=PackedInt32Array(1793602956) index="1" unique_id=1631808763]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, -0.05)
+shape = SubResource("CylinderShape3D_hwerb")
+
+[node name="effectLocation" parent="physics" parent_id_path=PackedInt32Array(1793602956) index="3" unique_id=420240815]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.018, -0.48)
+
+[node name="pickupArea" parent="." index="1" unique_id=1071034132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+
+[node name="AnimationPlayer" parent="." index="2" unique_id=1930136047]
+libraries/ = SubResource("AnimationLibrary_arhst")
+
+[connection signal="body_entered" from="pickupArea" to="." method="pick_up"]

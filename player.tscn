@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bqepe4lsds15o" path="res://assets/characters/ttt.png" id="2_i3pqv"]
 [ext_resource type="Script" uid="uid://d3mdq7peeij27" path="res://scripts/camera_mode.gd" id="2_sweqy"]
 [ext_resource type="PackedScene" uid="uid://hh3i4wqthgm" path="res://ui/crosshair.tscn" id="3_i3pqv"]
-[ext_resource type="PackedScene" uid="uid://caqh0ia4poe0q" path="res://weapons/pistol.tscn" id="4_hqtel"]
+[ext_resource type="PackedScene" uid="uid://2iw5q4iippfu" path="res://weapons/pistol.tscn" id="4_hqtel"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onrkg"]
 albedo_texture = ExtResource("2_i3pqv")

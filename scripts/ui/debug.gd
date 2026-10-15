@@ -13,6 +13,7 @@ func _physics_process(_delta) -> void:
 	" " + str(player.calc_value_offset(Vector3.AXIS_Z, 1)) +\
 	"\n real velocity " + str(player.get_real_velocity().length()) +\
 	"\n health "+ str(player.health) +\
+	"\n weapon "+ str(player.weapon_slot) +" "+ str(player.holding[player.weapon_slot]) +\
 #	"\n _progress "+ str(player._progress) +\
 #	"\n _offset "+ str(player._offset) +\
 #	"\n offset_limit "+ str(path.get_allowed_offset(player._progress)) +\

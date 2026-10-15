@@ -4,6 +4,7 @@ class_name Player extends Character
 @onready var camera := camera_offset.get_node("Camera3D")
 @onready var collision := $CollisionShape3D
 @onready var visuals := $MeshInstance3D
+@onready var hold := $holdLocation
 @onready var path := $"../world/path" # constant reference hopefully, cant use global variable yet
 
 @export var DEFAULT_MOVE_SPEED := 5.0
@@ -21,6 +22,7 @@ class_name Player extends Character
 @export var lives: int
 @export var max_health := 10
 @export var holding: Array[Weapon] = []
+@export var weapon_slot := 0
 @export var movement: Movement
 var points: int
 var move_speed: float
@@ -68,6 +70,27 @@ func stick_to_cover(cover: Cover, direction):
 	var dir = Vector3(direction.x, 0, direction.y) # cant do basis transform with vector2
 	dir = global_basis.inverse() * cover.basis * dir
 	return Vector2(dir.x, dir.z)
+
+
+func switch_weapon(id: int): ## could be ran from other scripts to change weapon forcefully
+	if holding.size() > 1: # prevent animation from playing if weapon wont change
+		if id != weapon_slot and holding[id]: # if target slot has a weapon
+			holding[weapon_slot].put_away()
+			weapon_slot = id
+			if not holding[weapon_slot].get_parent() == hold: # stops a warning
+				hold.add_child(holding[weapon_slot])
+			holding[weapon_slot].get_out(self)
+
+func weapon_inputs():
+	var dir = int(Input.is_action_just_pressed("player1_next_weapon")) \
+	- int(Input.is_action_just_pressed("player1_prev_weapon")) # cant use get_axis for mouse wheel
+	if dir: # either pressed
+		switch_weapon((weapon_slot + dir) % holding.size()) # cycle back after end of array
+	
+	elif Input.is_action_just_pressed("player1_weapon1"):
+		switch_weapon(0)
+	elif Input.is_action_just_pressed("player1_weapon2"):
+		switch_weapon(1)
 
 
 func slide():
@@ -153,14 +176,15 @@ func reset_movement():
 func _ready() -> void:
 	#camera_pivot.rotation.x = -PI / 2 + deg_to_rad(15) # DEBUG top down view - minusing default 15 rotation
 	health = 10
-	inventory = {1: 15}
+	inventory = {1: 50}
 	reset_movement()
 	Globals.players.append(self)
-	$holdLocation/pistol.pick_up(self)
-	$holdLocation/pistol.get_out(self)
+	holding.append($holdLocation/pistol)
+	holding[weapon_slot].get_out(self) # could remove to have it start hidden 
 	print("this is game")
 
 func _physics_process(delta):
+	weapon_inputs()
 	if not is_on_floor():  # falling
 		velocity += get_gravity() * delta
 	elif Input.is_action_just_pressed("player1_jump"): # is on floor
@@ -200,7 +224,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	do_path_movement(delta) # from current frame, after physics applied
-	
 	animate()
 
 
@@ -208,8 +231,9 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		aim_point = event.position
 	view_direction = camera.project_ray_normal(aim_point)
-	if event is InputEventMouseButton: if event.pressed:
-		$holdLocation/pistol.user_input(self)
+	if event is InputEventMouseButton and event.pressed \
+	and event.button_index == MOUSE_BUTTON_LEFT:
+		holding[weapon_slot].user_input(self)
 
 
 func is_invulnerable(from: Vector3):

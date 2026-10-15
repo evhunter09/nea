@@ -57,4 +57,5 @@ func die(from: Character):
 	from.points += points_value
 	$/root/Game.HUD.points_changed(from.points)
 	$AnimationPlayer.play("die")
+	weapon.enter_world()
 	super(from)
