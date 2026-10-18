@@ -55,6 +55,6 @@ func get_out(user):
 	super(user)
 
 func weapon_hit(object, location, user):
-	print("hit ", object)
+	#print("hit ", object)
 	if object is Character:
 		object.on_hit(damage, user)

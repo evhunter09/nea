@@ -1,0 +1,242 @@
+[gd_scene format=3 uid="uid://fy2jfy7drv1w"]
+
+[ext_resource type="PackedScene" uid="uid://hs82iasy87iq" path="res://weapons/weapon.tscn" id="1_1atye"]
+[ext_resource type="Script" uid="uid://cibpcblvhn5uj" path="res://scripts/weapons/fists.gd" id="2_hxs83"]
+[ext_resource type="Script" uid="uid://dmnd3wwb3k5bc" path="res://scripts/weapons/p90.gd" id="3_hxs83"]
+[ext_resource type="ArrayMesh" uid="uid://dn0p7pc1cilnb" path="res://assets/models/right_hand.OBJ" id="3_msnl0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r8qdv"]
+albedo_color = Color(0.8, 0.5866667, 0.4, 1)
+clearcoat_enabled = true
+clearcoat = 0.2
+clearcoat_roughness = 1.0
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.2
+subsurf_scatter_skin_mode = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jgs65"]
+radius = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ro41k"]
+size = Vector3(0.5, 0.8, 1)
+
+[sub_resource type="Animation" id="Animation_hxs83"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics/mesh")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1, 0, 4.371139e-08)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("physics/leftHandLocation/mesh")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 1, 0)
+tracks/3/type = "scale_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("physics/leftHandLocation/mesh")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -1, -1, -1)
+
+[sub_resource type="Animation" id="Animation_m7ft8"]
+resource_name = "equip"
+length = 0.4
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.4, 0, 0.3, 1, 0, 0.05, 0, 0.33333334, 1, 0, 0, 0, 0.4, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.707107, 0, 0, 0.707107, 0.3, 1, -0.008727, 0, 0, 0.999962, 0.33333334, 1, 0, 0, 0, 1, 0.4, 1, 0, 0, 0, 1)
+tracks/2/type = "position_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("physics/leftHandLocation/mesh")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.3, 1, 0, 0.05, 0, 0.36666667, 1, 0, -0.03, 0, 0.4, 1, 0, 0, 0)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("physics/leftHandLocation/mesh")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 1, 0)
+tracks/4/type = "scale_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("physics/leftHandLocation/mesh")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -1, -1, -1)
+
+[sub_resource type="Animation" id="Animation_ofm2j"]
+resource_name = "idle"
+length = 14.0
+loop_mode = 1
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics/mesh")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.5, 1, 0, 0.01, 0, 1, 1, 0, -0.01, 0, 1.5, 1, 0, 0.01, 0, 2.2666667, 1, 0, -0.01, 0, 2.8, 1, 0, 0.005, 0, 4.2, 1, 0, 0, 0, 4.4, 1, 0, 0, 0, 5.3, 1, 0, 0.008, 0, 6.2, 1, 0, 0, 0, 6.4, 1, 0, 0, 0, 9.08, 1, 0, 0, 0, 9.58, 1, 0, 0.01, 0, 10.08, 1, 0, -0.01, 0, 10.58, 1, 0, 0.01, 0, 11.346666, 1, 0, -0.01, 0, 12.366667, 1, 0, 0, 0, 13.966666, 1, 0, 0, 0)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics/leftHandLocation/mesh")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.4, 1, 0, 0.01, 0, 0.9, 1, 0, -0.01, 0, 1.4, 1, 0, 0.01, 0, 2.1666667, 1, 0, -0.01, 0, 2.7333333, 1, 0, 0.005, 0, 4.2, 1, 0, 0, 0, 4.4000006, 1, 0, 0, 0, 5.3, 1, 0, 0.008, 0, 6.2, 1, 0, 0, 0, 6.4000006, 1, 0, 0, 0, 9.08, 1, 0, 0, 0, 9.5, 1, 0, 0.01, 0, 10, 1, 0, -0.01, 0, 10.5, 1, 0, 0.01, 0, 11.266666, 1, 0, -0.01, 0, 12.266666, 1, 0, 0, 0, 13.966667, 1, 0, 0, 0)
+tracks/2/type = "scale_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("physics/leftHandLocation/mesh")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -1, -1, -1)
+
+[sub_resource type="Animation" id="Animation_r8qdv"]
+resource_name = "put away"
+length = 0.4
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.13333334, 1, 0, -0.1, 0, 0.4, 1, 0, -0.4, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.13333334, 1, -0.258819, 0, 0, 0.965926, 0.4, 1, -0.707107, 0, 0, 0.707107)
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove_from_world"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_msnl0"]
+resource_name = "use"
+length = 0.24
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics/mesh")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.06666667, 1, 0, 0, -0.4, 0.2, 1, 0, 0, 0, 0.23333333, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics/mesh")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 1, 0, 4.371139e-08, 0.06666667, 1, 0, 0.996195, -0.087156, 0, 0.2, 1, 0, 0.999048, 0.043619, 0, 0.23333333, 1, 0, 1, 0, 7.54979e-08)
+
+[sub_resource type="Animation" id="Animation_kytp7"]
+resource_name = "use_left"
+length = 0.24
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("physics/leftHandLocation/mesh")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.06666667, 1, 0, 0, -0.4, 0.2, 1, 0, 0, 0, 0.23333333, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("physics/leftHandLocation/mesh")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 1, 0, 0.06666667, 1, 0, -0.087156, 0.996195, 0, 0.2, 1, 0, 0.043619, 0.999048, 0, 0.23333333, 1, 0, 0, 1, 0)
+tracks/2/type = "scale_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("physics/leftHandLocation/mesh")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -1, -1, -1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hxs83"]
+_data = {
+&"RESET": SubResource("Animation_hxs83"),
+&"equip": SubResource("Animation_m7ft8"),
+&"idle": SubResource("Animation_ofm2j"),
+&"put away": SubResource("Animation_r8qdv"),
+&"use": SubResource("Animation_msnl0"),
+&"use_left": SubResource("Animation_kytp7")
+}
+
+[node name="fists" unique_id=1043645253 instance=ExtResource("1_1atye")]
+script = ExtResource("2_hxs83")
+replace = ExtResource("3_hxs83")
+
+[node name="mesh" parent="physics" parent_id_path=PackedInt32Array(1793602956) index="0" unique_id=519396765]
+transform = Transform3D(-1, 0, 1.509958e-07, 0, 1, 0, -1.509958e-07, 0, -1, 0, 0, 0)
+mesh = ExtResource("3_msnl0")
+surface_material_override/0 = SubResource("StandardMaterial3D_r8qdv")
+
+[node name="CollisionShape3D" parent="physics" parent_id_path=PackedInt32Array(1793602956) index="1" unique_id=1631808763]
+shape = SubResource("SphereShape3D_jgs65")
+
+[node name="useLocation" parent="physics" parent_id_path=PackedInt32Array(1793602956) index="2" unique_id=575683928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+
+[node name="hitArea" type="Area3D" parent="physics/useLocation" index="0" unique_id=1469051899]
+process_mode = 3
+collision_mask = 14
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="physics/useLocation/hitArea" index="0" unique_id=2135489823]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+shape = SubResource("BoxShape3D_ro41k")
+
+[node name="leftHandLocation" type="Marker3D" parent="physics" parent_id_path=PackedInt32Array(1793602956) index="4" unique_id=334498083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+gizmo_extents = 0.2
+
+[node name="mesh" type="MeshInstance3D" parent="physics/leftHandLocation" index="0" unique_id=1000758964]
+transform = Transform3D(1, -8.742278e-08, 0, 8.742278e-08, 1, 0, 0, 0, -1, 0, 0, 0)
+mesh = ExtResource("3_msnl0")
+surface_material_override/0 = SubResource("StandardMaterial3D_r8qdv")
+
+[node name="pickupArea" parent="." index="1" unique_id=1071034132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="AnimationPlayer" parent="." index="2" unique_id=1930136047]
+libraries/ = SubResource("AnimationLibrary_hxs83")
+
+[connection signal="body_entered" from="pickupArea" to="." method="pick_up"]

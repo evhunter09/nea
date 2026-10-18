@@ -6,12 +6,12 @@ var default = text
 
 func _physics_process(_delta) -> void:
 	text = default +\
-	"\n movement "+ str(player.movement) +\
+	"\n movement "+ Player.Movement.keys()[player.movement] +\
 	"\n move_speed "+ str(player.move_speed) +\
 	"\n inputted vel "+ str(player.global_basis.inverse() * player.velocity) +\
 	"\n velocity "+ str(player.calc_value_offset(Vector3.AXIS_X, 1)) +\
 	" " + str(player.calc_value_offset(Vector3.AXIS_Z, 1)) +\
-	"\n real velocity " + str(player.get_real_velocity().length()) +\
+	"\n speed " + str(player.get_real_velocity().length()) +\
 	"\n health "+ str(player.health) +\
 	"\n weapon "+ str(player.weapon_slot) +" "+ str(player.holding[player.weapon_slot]) +\
 #	"\n _progress "+ str(player._progress) +\
@@ -21,4 +21,4 @@ func _physics_process(_delta) -> void:
 #	"\n distance "+ str(path._distance) +\
 #	"\n node "+ str(path.TEMP)
 	"\n World:" +\
-	"\n world_state "+ str(Globals.world_state)
+	"\n world_state "+ Globals.WorldState.keys()[Globals.world_state]

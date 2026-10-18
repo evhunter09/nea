@@ -85,7 +85,8 @@ func weapon_inputs():
 	var dir = int(Input.is_action_just_pressed("player1_next_weapon")) \
 	- int(Input.is_action_just_pressed("player1_prev_weapon")) # cant use get_axis for mouse wheel
 	if dir: # either pressed
-		switch_weapon((weapon_slot + dir) % holding.size()) # cycle back after end of array
+		switch_weapon((weapon_slot + holding.size() + dir) % holding.size())
+		# cycle back after end of array - keeps positive (even though -1 still works)
 	
 	elif Input.is_action_just_pressed("player1_weapon1"):
 		switch_weapon(0)

@@ -25,22 +25,29 @@ func get_out(user: Character):
 	position = Vector3.ZERO # removes previous position from when in world
 	next_use = Time.get_ticks_msec() + equip_time
 	anim_player.play("equip")
-	$physics.process_mode = Node.PROCESS_MODE_DISABLED # stops it from falling while in use
-	$pickupArea.process_mode = Node.PROCESS_MODE_DISABLED # prevents detecting players while out
+	$physics.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED) # stops it from falling while in use
+	$pickupArea.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED) # prevents detecting players while out
 
 @abstract func weapon_hit(object: Node, location: Vector3, user: Character);
 
 func pick_up(player: Player):
-	if not Globals.contains_type(player.holding, get_script()): # cant replace with same type of weapon
+	if not Globals.contains_type(player.holding, get_script()): # prevent replacing with same type of weapon
 		if replace and Globals.contains_type(player.holding, replace):
-			var location = player.holding.find_custom(func(i): i.get_script() == replace)
+			var location = player.holding.find_custom(func(i): return i.get_script() == replace)
+			if location == player.weapon_slot:
+				player.holding[location].put_away() # or else will stay held but unusable
+				call_deferred("reparent", player.hold, false) # prevent godot complaining
+				get_out(player)
+			else:
+				remove_from_world()
 			player.holding[location] = self
+		
 		else:
 			player.holding.append(self)
-		remove_from_world()
+			remove_from_world()
 
 func put_away():
-	anim_player.play("put away") # must have get_parent().remove_child method at end
+	anim_player.play("put away") # must have remove_from_world() method at end
 
 func enter_world():
 	reparent($/root/Game.world) # should stay at same position
