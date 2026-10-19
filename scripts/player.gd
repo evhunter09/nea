@@ -246,6 +246,7 @@ func on_hit(damage, by):
 	if by is Enemy:
 		if not is_invulnerable(by.position):
 			health = max(health - damage, 0)
+	elif by == self: print("attempt self harm")
 	super(damage, by)
 
 func die(by):

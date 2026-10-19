@@ -14,14 +14,7 @@ func _ready():
 	damage = 2
 	equip_time = 400
 
-func knockback(user, object):
-	var dir_to_object = user.position.direction_to(object.position)
-	var knockback_velocity = dir_to_object * knockback_speed
-	if object is Character:
-		object.velocity += Vector3(knockback_velocity.x, 0, knockback_velocity.z)
-	elif object is RigidBody3D:
-		object.linear_velocity += Vector3(knockback_velocity.x, 0, knockback_velocity.z)
-	
+
 func use(user):
 	super(user)
 	if Time.get_ticks_msec() < last_hit + 600: # within 600ms of start of last use (but after next_use)
@@ -45,7 +38,7 @@ func get_out(user):
 func weapon_hit(object, location, user):
 	last_hit = Time.get_ticks_msec()
 	if object is Character or object is RigidBody3D:
-		knockback(user, object)
+		Globals.knockback(user, object, knockback_speed)
 	if object is Character:
 		object.on_hit(damage, user)
 

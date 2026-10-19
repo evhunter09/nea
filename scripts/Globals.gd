@@ -27,3 +27,11 @@ enum Modifiers {HEADSHOT_ONLY = 1, # powers of 2 for bitmasks
 func contains_type(array: Array, type) -> bool:
 	## checks if any items in array are same type as the type passed
 	return array.any(func(i): return i.get_script() == type)
+
+func knockback(from, object, speed: float):
+	var dir_to_object = from.position.direction_to(object.position)
+	var knockback_velocity = dir_to_object * speed
+	if object is Character:
+		object.velocity += Vector3(knockback_velocity.x, 0, knockback_velocity.z)
+	elif object is RigidBody3D:
+		object.linear_velocity += Vector3(knockback_velocity.x, 0, knockback_velocity.z)

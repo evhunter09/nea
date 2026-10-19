@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://dok1q3011nc04"]
+
+[ext_resource type="Script" uid="uid://dfpihnogqbs8e" path="res://scripts/world/maps/barrel.gd" id="1_g0fn7"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_g0fn7"]
+rough = true
+bounce = 0.1
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_ro41k"]
+height = 1.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g0fn7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ro41k"]
+material = SubResource("StandardMaterial3D_g0fn7")
+height = 1.2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ro41k"]
+radius = 5.0
+
+[sub_resource type="Gradient" id="Gradient_hga0l"]
+colors = PackedColorArray(0.3, 0.29225, 0.285, 1, 1, 0.48333335, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g0fn7"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_e7iam"]
+noise = SubResource("FastNoiseLite_g0fn7")
+color_ramp = SubResource("Gradient_hga0l")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5t5ui"]
+albedo_color = Color(0.83, 0.4288333, 0, 1)
+albedo_texture = SubResource("NoiseTexture2D_e7iam")
+emission_enabled = true
+emission = Color(1, 0.7, 0, 1)
+emission_energy_multiplier = 0.5
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.5
+backlight = Color(1, 0, 0, 1)
+disable_receive_shadows = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_68ouu"]
+material = SubResource("StandardMaterial3D_5t5ui")
+
+[sub_resource type="Animation" id="Animation_e7iam"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosionRadius/explosion:mesh.material.emission_energy_multiplier")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "scale_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("explosionRadius/explosion")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_g0fn7"]
+resource_name = "explode"
+length = 2.5000000000000004
+tracks/0/type = "scale_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("explosionRadius/explosion")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.099999994, 1, 1.5, 1.5, 1.5, 0.36666667, 1, 2.5, 2.5, 2.5, 1, 1, 5, 5, 5, 2.5, 1, 10, 10, 10)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("explosionRadius/explosion:transparency")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("explosionRadius/explosion:mesh:emission_energy_multiplier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("explosionRadius")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hga0l"]
+_data = {
+&"RESET": SubResource("Animation_e7iam"),
+&"explode": SubResource("Animation_g0fn7")
+}
+
+[node name="barrel" type="RigidBody3D" unique_id=1614641119]
+disable_mode = 1
+collision_layer = 7
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_g0fn7")
+script = ExtResource("1_g0fn7")
+used_colour = Color(0.5, 0.5, 0.5, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1739616705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+shape = SubResource("CylinderShape3D_ro41k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1246197531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+mesh = SubResource("CylinderMesh_ro41k")
+
+[node name="explosionRadius" type="Area3D" parent="." unique_id=156478801]
+collision_mask = 10
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="explosionRadius" unique_id=1676370428]
+shape = SubResource("SphereShape3D_ro41k")
+
+[node name="explosion" type="MeshInstance3D" parent="explosionRadius" unique_id=2047806660]
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("SphereMesh_68ouu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="explosionRadius/explosion" unique_id=1317984722]
+root_node = NodePath("../../..")
+libraries/ = SubResource("AnimationLibrary_hga0l")

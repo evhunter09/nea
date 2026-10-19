@@ -56,5 +56,5 @@ func get_out(user):
 
 func weapon_hit(object, location, user):
 	#print("hit ", object)
-	if object is Character:
+	if object is Character or object is RigidBody3D:
 		object.on_hit(damage, user)
