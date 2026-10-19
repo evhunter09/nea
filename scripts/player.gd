@@ -26,7 +26,6 @@ class_name Player extends Character
 @export var movement: Movement
 var points: int
 var move_speed: float
-var current_friction: float = FRICTION
 var _offset := 0.0   ## Units from path
 var _progress := 0.0 ## Units from path
 var aim_point: Vector2 ## Pixels

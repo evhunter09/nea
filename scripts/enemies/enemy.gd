@@ -33,6 +33,8 @@ func try_shoot():
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():  # falling
 		velocity += get_gravity() * delta
+	velocity.x = move_toward(velocity.x, 0 , current_friction)
+	velocity.z = move_toward(velocity.z, 0 , current_friction)
 	move_and_slide()
 	
 	if state == State.ALIVE:

@@ -6,6 +6,7 @@ class_name Character extends CharacterBody3D
 @export var health: int
 @export var inventory := {}
 
+var current_friction := 2.0
 var view_direction: Vector3
 
 enum State {ALIVE, DEAD}
