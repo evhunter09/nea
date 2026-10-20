@@ -14,7 +14,7 @@
 
 
 # TASKS
-6) EXAMPLE MAP WITH PATH
+
 
 ### FUTURE DEV
 - path: add current (and id) attrib - allow multiple

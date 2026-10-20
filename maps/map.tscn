@@ -3,14 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://bn0mv1wa4ghkj" path="res://assets/grid.png" id="1_d6q2c"]
 [ext_resource type="PackedScene" uid="uid://crf2tpamqqyqp" path="res://maps/path.tscn" id="2_e0an3"]
 [ext_resource type="PackedScene" uid="uid://c0aun5uq486nt" path="res://maps/cover.tscn" id="2_w8fwg"]
-[ext_resource type="Script" uid="uid://d1qcr7v7o1yk1" path="res://scripts/environment.gd" id="3_c3pkw"]
+[ext_resource type="Script" uid="uid://d1qcr7v7o1yk1" path="res://scripts/world/environment.gd" id="3_c3pkw"]
 [ext_resource type="PackedScene" uid="uid://b0hdc7jmncqjq" path="res://maps/path_node.tscn" id="3_e0an3"]
 [ext_resource type="Script" uid="uid://dl58bido1eurx" path="res://scripts/world/area.gd" id="3_fgnob"]
-[ext_resource type="Script" uid="uid://cyxcn5g7itnm3" path="res://player_indicator.gd" id="4_p5exx"]
 [ext_resource type="PackedScene" uid="uid://h3455rw6tv2f" path="res://maps/pickup.tscn" id="4_w6oos"]
 [ext_resource type="Texture2D" uid="uid://b2qiy6q2edmtc" path="res://assets/textures/plus.png" id="5_lsoi8"]
 [ext_resource type="PackedScene" uid="uid://bt47mvfgelm3e" path="res://enemies/enemy.tscn" id="6_58o0d"]
-[ext_resource type="PackedScene" uid="uid://2iw5q4iippfu" path="res://weapons/pistol.tscn" id="6_hnoar"]
 [ext_resource type="PackedScene" uid="uid://dv2lblsq8hhdb" path="res://weapons/p90.tscn" id="7_1rpe1"]
 [ext_resource type="PackedScene" uid="uid://fy2jfy7drv1w" path="res://weapons/fists.tscn" id="8_ov3q5"]
 [ext_resource type="PackedScene" uid="uid://dok1q3011nc04" path="res://maps/barrel.tscn" id="15_omv61"]
@@ -86,7 +84,7 @@ size = Vector3(0.5, 0.3, 1)
 size = Vector3(0.5, 0.3, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lqxt6"]
-size = Vector3(3, 2, 3)
+size = Vector3(3, 2, 4)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d06hr"]
 albedo_texture = ExtResource("5_lsoi8")
@@ -141,38 +139,14 @@ size = Vector2(1000, 1000)
 subdivide_width = 2
 subdivide_depth = 2
 
-[sub_resource type="Curve3D" id="Curve3D_p5exx"]
+[sub_resource type="Curve3D" id="Curve3D_hnoar"]
 resource_local_to_scene = true
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 2, 2.5, -3, 0, 0, 0, -1.1045696, 0, 0, 0, 2.5, -3, 0, 0, -1.1045696, 0, 0, 0, -2, 2.5, -0.99999994, 0, 0, 0, 0, 0, 1.1045696, -2, 2.5, 0.9999999, 1.1045696, 0, 0, 0, 0, 0, -4, 2.5, 3, 0, 0, 0, -2.209139, 0, 0, -6, 2.5, 3, 0, 0, 2.209139, 0, 0, 0, -10, 2.5, -1, 0, 0, 0, 0, 0, 0, -10, 2.5, -2),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 5, 2.5, -4, 0, 0, 0, -1.1045696, 0, 0, 2, 2.5, -4, 0, 0, -1.1045696, 0, 0, 0, 0, 2.5, -2, 0, 0, 0, 0, 0, 1.6568543, 0, 2.5, -1.1920929e-07, 1.6568543, 0, 0, 0, 0, 0, -3, 2.5, 3, 0, 0, 0, -2.209139, 0, 0, -6.0030975, 2.5, 3, 0, 0, 2.209139, 0, 0, 0, -10, 2.5, -1, 0, 0, 0, 0, 0, -1.1045696, -10, 2.5, -2, 1.1045696, 0, 0, 0, 0, 0, -12, 2.5, -4, 0, 0, 0, 0, 0, 0, -15, 2.5, -4, 0, 0, 0, 0, 0, 0, -19, 2.5, -4, 0, 0, 0, 0, 0, 0, -22, 2.5, -4),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
-point_count = 8
+point_count = 12
 up_vector_enabled = false
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_58o0d"]
-resource_local_to_scene = true
-transparency = 1
-albedo_color = Color(0, 1, 0.83333325, 0.5019608)
-albedo_texture = ExtResource("1_d6q2c")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_ro41k"]
-material = SubResource("StandardMaterial3D_58o0d")
-top_radius = 0.8
-bottom_radius = 0.8
-height = 0.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgnob"]
-resource_local_to_scene = true
-transparency = 1
-albedo_color = Color(0, 1, 0.83333325, 1)
-albedo_texture = ExtResource("1_d6q2c")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_68ouu"]
-material = SubResource("StandardMaterial3D_fgnob")
-top_radius = 0.0
-bottom_radius = 0.25
-height = 1.6
 
 [sub_resource type="Shader" id="Shader_ers5l"]
 code = "shader_type sky;
@@ -471,6 +445,18 @@ mesh = SubResource("PlaneMesh_p5exx")
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_58o0d")
 
+[node name="wall2" type="StaticBody3D" parent="layout" unique_id=770327181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 3.58, -3)
+collision_layer = 5
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="layout/wall2" unique_id=814918181]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_p5exx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="layout/wall2" unique_id=1407212280]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_58o0d")
+
 [node name="stair" type="Node3D" parent="layout" unique_id=1923106946]
 
 [node name="step1" type="StaticBody3D" parent="layout/stair" unique_id=784424786]
@@ -558,38 +544,35 @@ transform = Transform3D(-1, 8.742278e-08, 1.3362996e-21, -8.742278e-08, -1, -1.5
 mesh = SubResource("BoxMesh_gqbix")
 
 [node name="cover" parent="layout" unique_id=1588800309 instance=ExtResource("2_w8fwg")]
-transform = Transform3D(0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, 0.7071067, -19.25, 2.5, 3.5)
+transform = Transform3D(0, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, 0, -5.25, 2.5, 3.5)
 
 [node name="areas" type="Node3D" parent="layout" unique_id=2018412214]
 editor_description = "Holds all areas, for organisation"
 
 [node name="CombatArea" type="Area3D" parent="layout/areas" unique_id=1688245820]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -4)
 collision_mask = 8
 script = ExtResource("3_fgnob")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="layout/areas/CombatArea" unique_id=164410583]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
 shape = SubResource("BoxShape3D_lqxt6")
 
 [node name="collectables" type="Node3D" parent="layout" unique_id=1753244689]
 
 [node name="pickup" parent="layout/collectables" unique_id=616554234 instance=ExtResource("4_w6oos")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 2.75, 0.8)
 type = 2
 value = 5
 
 [node name="itemMesh" parent="layout/collectables/pickup" index="1" unique_id=2021888066]
 mesh = SubResource("BoxMesh_ro41k")
 
-[node name="pistol" parent="layout/collectables" unique_id=1043645253 instance=ExtResource("6_hnoar")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 4)
-
 [node name="p90" parent="layout/collectables" unique_id=1416989115 instance=ExtResource("7_1rpe1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, 5)
+transform = Transform3D(0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0, 1, -6, 2.6, 2.6)
 
 [node name="fists" parent="layout/collectables" unique_id=433586684 instance=ExtResource("8_ov3q5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.80963326, 4.0467663, 4.261551)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.24999997, 2.75, -5.9604645e-08)
 
 [node name="interactables" type="Node3D" parent="layout" unique_id=837049007]
 
@@ -606,75 +589,99 @@ cast_shadow = 0
 mesh = SubResource("PlaneMesh_e0an3")
 
 [node name="path" parent="." unique_id=95894422 instance=ExtResource("2_e0an3")]
-curve = SubResource("Curve3D_p5exx")
-debug_custom_color = Color(1.1070073e-06, 0.4998786, 0.53484625, 1)
-node_list = Array[Node]([Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, -3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":0.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":2.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, -0.99999994),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":5.141592741012573,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0.9999999),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":2.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":7.1415925,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":0.2,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":10.283185243606567,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, 3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":4.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":12.283185243606567,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -1),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":18.566370725631714,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
-, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -2),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":19.566370725631714,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.1254902))
+curve = SubResource("Curve3D_hnoar")
+node_list = Array[Node]([Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, -4),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":2.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":0.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, -4),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":2.0,"curve_rad":2.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":3.0,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -2),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":2.0,"curve_rad":0.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":6.141592741012573,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -1.1920929e-07),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":1.5,"curve_rad":3.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":8.141592621803284,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":2.0,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":12.853981733322144,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0030975, 2.5, 3),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":2.0,"curve_rad":4.0,"curve_dir":1,"curve_angle":1.571571,"cum_distance":15.857079267501831,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -1),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":0.0,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5700216,"cum_distance":22.14336323738098,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -2),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":0.0,"curve_rad":2.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":23.14336323738098,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.5, -4),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":2.0,"curve_rad":0.0,"curve_dir":-1,"curve_angle":1.5707964,"cum_distance":26.284956,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2.5, -4),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":2.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":29.284956,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, -4),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":0,"curve_angle":0.0,"cum_distance":33.284955978393555,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
+, Object(Marker3D,"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"physics_interpolation_mode":0,"auto_translate_mode":0,"editor_description":"","transform":Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 2.5, -4),"rotation_edit_mode":0,"rotation_order":2,"top_level":false,"visible":true,"visibility_parent":NodePath(""),"gizmo_extents":0.25,"script":Resource("res://scripts/world/path_node.gd"),"distance":1.0,"curve_rad":0.0,"curve_dir":1,"curve_angle":1.5707964,"cum_distance":36.284955978393555,"highlighted":false,"def_colour":Color(0, 1, 0.83333325, 0.0627451))
 ])
 
 [node name="PathNode" parent="path" unique_id=1780113298 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, -4)
+distance = 2.0
 
 [node name="PathNode2" parent="path" unique_id=1214719074 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, -4)
+distance = 2.0
 curve_rad = 2.0
 curve_dir = -1
 curve_angle = 1.5707964
-cum_distance = 2.0
+cum_distance = 3.0
 
 [node name="PathNode3" parent="path" unique_id=1104674472 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, -0.99999994)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -2)
+distance = 2.0
 curve_dir = -1
 curve_angle = 1.5707964
-cum_distance = 5.141592741012573
+cum_distance = 6.141592741012573
 
 [node name="PathNode4" parent="path" unique_id=773738965 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 0.9999999)
-curve_rad = 2.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -1.1920929e-07)
+distance = 1.5
+curve_rad = 3.0
 curve_dir = 1
 curve_angle = 1.5707964
-cum_distance = 7.1415925
+cum_distance = 8.141592621803284
 
 [node name="PathNode5" parent="path" unique_id=1375534026 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2.5, 3)
-distance = 0.2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 3)
+distance = 2.0
 curve_dir = 1
 curve_angle = 1.5707964
-cum_distance = 10.283185243606567
+cum_distance = 12.853981733322144
 
 [node name="PathNode6" parent="path" unique_id=1809057799 instance=ExtResource("3_e0an3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.0030975, 2.5, 3)
+distance = 2.0
 curve_rad = 4.0
 curve_dir = 1
-curve_angle = 1.5707964
-cum_distance = 12.283185243606567
+curve_angle = 1.571571
+cum_distance = 15.857079267501831
 
 [node name="PathNode7" parent="path" unique_id=1714023074 instance=ExtResource("3_e0an3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -1)
 distance = 0.0
 curve_dir = 1
-curve_angle = 1.5707964
-cum_distance = 18.566370725631714
+curve_angle = 1.5700216
+cum_distance = 22.14336323738098
 
 [node name="PathNode8" parent="path" unique_id=1463986964 instance=ExtResource("3_e0an3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2.5, -2)
-cum_distance = 19.566370725631714
+distance = 0.0
+curve_rad = 2.0
+curve_dir = -1
+curve_angle = 1.5707964
+cum_distance = 23.14336323738098
 
-[node name="playerIndicator" type="MeshInstance3D" parent="." unique_id=1273205119]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.2, 0)
-visible = false
-mesh = SubResource("CylinderMesh_ro41k")
-script = ExtResource("4_p5exx")
+[node name="PathNode9" parent="path" unique_id=386716170 instance=ExtResource("3_e0an3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 2.5, -4)
+distance = 2.0
+curve_dir = -1
+curve_angle = 1.5707964
+cum_distance = 26.284956
 
-[node name="arrow" type="MeshInstance3D" parent="playerIndicator" unique_id=1259421074]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.4, -1.7484556e-08)
-mesh = SubResource("CylinderMesh_68ouu")
+[node name="PathNode10" parent="path" unique_id=1871015449 instance=ExtResource("3_e0an3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2.5, -4)
+distance = 2.0
+cum_distance = 29.284956
+
+[node name="PathNode11" parent="path" unique_id=369536810 instance=ExtResource("3_e0an3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 2.5, -4)
+cum_distance = 33.284955978393555
+
+[node name="PathNode12" parent="path" unique_id=1641726622 instance=ExtResource("3_e0an3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 2.5, -4)
+curve_dir = 1
+curve_angle = 1.5707964
+cum_distance = 36.284955978393555
 
 [node name="sunLight" type="DirectionalLight3D" parent="." unique_id=2026949614]
 transform = Transform3D(0.9657813, -0.16989136, -0.19596879, 0.09281051, -0.4791713, 0.8728007, -0.24218397, -0.86112225, -0.44700694, 0, 0, 0)
@@ -685,12 +692,13 @@ shadow_enabled = true
 environment = SubResource("Environment_p5exx")
 script = ExtResource("3_c3pkw")
 
-[node name="Enemy" parent="." unique_id=1678883102 instance=ExtResource("6_58o0d")]
-transform = Transform3D(-0.25881904, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, -0.25881904, -13.208164, 2.5000002, -5.021614)
+[node name="enemies" type="Node3D" parent="." unique_id=1515761824]
 
-[node name="Enemy2" parent="." unique_id=1001796237 instance=ExtResource("6_58o0d")]
-transform = Transform3D(0.64278764, 0, -0.76604444, 0, 1, 0, 0.76604444, 0, 0.64278764, -11.208164, 2.5000002, 5.3783865)
+[node name="Enemy" parent="enemies" unique_id=1678883102 instance=ExtResource("6_58o0d")]
+transform = Transform3D(-0.42261824, 0, -0.9063078, 0, 1, 0, 0.9063078, 0, -0.42261824, -13, 2.5, -2)
 
+[node name="Enemy2" parent="enemies" unique_id=1001796237 instance=ExtResource("6_58o0d")]
+transform = Transform3D(0.64278764, 0, -0.7660445, 0, 1, 0, 0.7660445, 0, 0.64278764, -11.208164, 2.5000002, 5.378387)
 
 [connection signal="body_entered" from="layout/areas/CombatArea" to="layout/areas/CombatArea" method="_on_body_entered"]
 

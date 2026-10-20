@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://crf2tpamqqyqp"]
 
-[ext_resource type="Script" uid="uid://bk0570hx8bjtm" path="res://scripts/path.gd" id="1_6aw2u"]
+[ext_resource type="Script" uid="uid://bk0570hx8bjtm" path="res://scripts/world/path.gd" id="1_6aw2u"]
 
 [sub_resource type="Curve3D" id="Curve3D_jnavc"]
 resource_local_to_scene = true
