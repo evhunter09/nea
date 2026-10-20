@@ -74,7 +74,7 @@ func stick_to_cover(cover: Cover, direction):
 func switch_weapon(id: int): ## could be ran from other scripts to change weapon forcefully
 	if holding.size() > 1: # prevent animation from playing if weapon wont change
 		if id != weapon_slot and holding[id]: # if target slot has a weapon
-			holding[weapon_slot].put_away()
+			holding[weapon_slot].put_away(self)
 			weapon_slot = id
 			if not holding[weapon_slot].get_parent() == hold: # stops a warning
 				hold.add_child(holding[weapon_slot])

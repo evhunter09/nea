@@ -13,6 +13,8 @@ func _ready():
 	cooldown = 300
 	damage = 2
 	equip_time = 400
+	effect_property = NodePath("SPRINT_MULTI")
+	effect_value = 2.0
 
 
 func use(user):
