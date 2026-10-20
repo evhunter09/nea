@@ -40,7 +40,6 @@ var WS = Globals.WorldState
 
 
 func enter_cover(cover: Cover): ## sent from each cover
-	print(cover)
 	if Globals.world_state == WS.COMBAT:
 		movement = Movement.IN_COVER
 		enter_crouch()
@@ -104,7 +103,7 @@ func enter_crouch():
 	collision.shape.height = DEFAULT_HEIGHT * CROUCH_HEIGHT_MULTI
 
 func duck():
-	print("duck: ", movement)
+	#print("duck: ", movement)
 	match movement:
 		Movement.IN_COVER:
 			movement = Movement.PEAK
@@ -199,7 +198,6 @@ func _physics_process(delta):
 			run(false)
 			
 	if movement == Movement.SLIDE and velocity.length() < SLIDE_MIN_SPEED:
-			print("exit slide")
 			duck() # same as manually cancelling slide
 	
 	var rel_velocity
@@ -255,4 +253,4 @@ func die(by):
 
 func pickup(amount): # health by default
 	health = min(health + amount, max_health) # could remove check for certain pickups
-	print("Health gain: ", amount)
+	#print("Health gain: ", amount)

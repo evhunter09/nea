@@ -23,7 +23,7 @@ Globals="*uid://du3quwoos8wn3"
 [debug]
 
 gdscript/warnings/unsafe_cast=1
-shapes/paths/geometry_color=Color(0.101960786, 1, 0.69803923, 0.7529412)
+shapes/paths/geometry_color=Color(1, 0.100000024, 0.6699999, 1)
 shapes/paths/geometry_width=5.0
 
 [display]

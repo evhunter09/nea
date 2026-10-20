@@ -23,7 +23,6 @@ func _on_cover_area_body_exited(body: Node3D) -> void:
 
 func _on_edge_entered(body: Node3D) -> void:
 	if $coverArea.overlaps_body(body): # no point setting peek direction if player isnt covering
-		print("_on_edge_entered ", rad_to_deg(rotation.y))
 		var pos_offset = body.global_position - global_position
 		var relative_offset = basis.inverse() * pos_offset
 		edge_entered.emit(sign(relative_offset.x))

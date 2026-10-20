@@ -13,7 +13,7 @@ enum State {ALIVE, DEAD}
 
 
 func on_hit(_damage: int, by: Character):
-	if health <= 0:
+	if health <= 0 and state == State.ALIVE:
 		die(by)
 
 func die(_from):

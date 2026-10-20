@@ -33,3 +33,4 @@ text = "PLAYER vars:
 "
 label_settings = SubResource("LabelSettings_ik71a")
 script = ExtResource("4_e08lw")
+enabled = true
